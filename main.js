@@ -17,17 +17,36 @@ function determinarEsNumero(valor) {
     }    
 }
 
+class renglon {
+    constructor (id, precio, cantidad){
+        this.id = id;
+        this.precio = precio;
+        this.cantidad = cantidad;
+        this.subtotal;
+    }
+
+    calcularRenglon = function () {
+        this.subtotal = (this.precio * this.cantidad) *iva;
+    }
+}
+
 while (comprar==true) { /*mientras quiera seguir comprando */
 
+    const renglonNew = new renglon();
+
     //obtengo todos los valores, despues los tomaré de un control o componente
-    idProducto = prompt ("Ingrese el PRODUCTO (ID) que desea comprar: (Ejemplo: AB-5003)");
+    //idProducto = prompt ("Ingrese el PRODUCTO (ID) que desea comprar: (Ejemplo: AB-5003)");
+    renglonNew.id = prompt ("Ingrese el PRODUCTO (ID) que desea comprar: (Ejemplo: AB-5003)");
+
     valorProducto = parseFloat(prompt("Ingrese el valor del producto que desea comprar")); /* este valor lo tomaría del ID de una BD*/
-    
+
     //Me aseguro que ingrese un valor numerico de precio, sino es asi lo pido de nuevo hasta que sea correcto
     while (determinarEsNumero(valorProducto)==false) {
         valorProducto = parseFloat(prompt("El valor ingresado no es correcto. Ingrese nuevamente el valor del producto que desea comprar")); /* este valor lo tomaría del ID de una BD*/
     }
     
+    renglonNew.precio = valorProducto; //asigno el valor a la propiedad recien cdo me asegure que es un valor correcto
+
     cantidadProdu = parseInt(prompt("Ingrese la cantidad del producto que desea comprar"));
 
     //Me aseguro que ingrese un valor numerico de cantidad, sino es asi la pido de nuevo hasta que sea correcta
@@ -35,13 +54,17 @@ while (comprar==true) { /*mientras quiera seguir comprando */
         cantidadProdu = parseInt(prompt("La cantidad ingresada no es correcta. Ingrese nuevamente la cantidad del producto que desea comprar"));
     }
 
+    renglonNew.cantidad = cantidadProdu;
+
     cantidad = cantidad + 1; /*al ingresar un producto al carrito incremento el contador de productos */
 
+    renglonNew.calcularRenglon();
+
     //calculo el subtotal de la compra y sumo ese subtotal valorizado del carrito
-    montoCarrito = (montoCarrito + ((valorProducto * cantidadProdu) *iva));
+    montoCarrito = (montoCarrito + renglonNew.subtotal);
 
     //Muestro el renglon completo del carrito de compras, como si fuera el registro de una factura
-    console.log("ID:(" + idProducto + ")-Descripcion Producto " + cantidad + "-Cantidad:" + cantidadProdu + "-Precio Producto:$" + valorProducto);
+    console.log("ID:(" + renglonNew.id + ")-Descripcion Producto " + cantidad + "-Cantidad:" + renglonNew.cantidad + "-Precio Producto:$" + renglonNew.precio);
 
     //informo el subtotal de la compra hasta el momento, despues lo mostraría en un componente
     alert("Hasta ahora el monto de su carrito de compras es $" + montoCarrito);
