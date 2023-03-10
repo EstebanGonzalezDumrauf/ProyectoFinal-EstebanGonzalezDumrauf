@@ -6,7 +6,7 @@ let valorProducto;
 let cantidadProdu;
 let montoCarrito = 0;
 let cantidad = 0;
-let i = 0;
+let i = 1;
 let arrayRenglon = [];
 const iva = 1.21; /*defino al IVA como constante */
 
@@ -21,6 +21,7 @@ function determinarEsNumero(valor) {
 
 class renglon {
     constructor (id, precio, cantidad){
+        this.nroFila;
         this.id = id;
         this.precio = precio;
         this.cantidad = cantidad;
@@ -69,10 +70,13 @@ while (comprar==true) { /*mientras quiera seguir comprando */
 
     renglonNew.calcularRenglon();
 
+    renglonNew.nroFila = i;
+
     //calculo el subtotal de la compra y sumo ese subtotal valorizado del carrito
     montoCarrito = (montoCarrito + renglonNew.subtotal);
 
-    arrayRenglon [i] = renglonNew;
+    arrayRenglon.push (renglonNew);
+    //arrayRenglon [i] = renglonNew;
     i = i + 1;
 
     //Muestro el renglon completo del carrito de compras, como si fuera el registro de una factura
@@ -106,8 +110,7 @@ while (comprar==true) { /*mientras quiera seguir comprando */
             break;
         
         default:
-            do {
-    	        opcion = prompt ("Ha ingresado una opción inválida. Desea seguir comprando? (S/N)");
+            do { opcion = prompt ("Ha ingresado una opción inválida. Desea seguir comprando? (S/N)");
             } while (opcion != "S" && opcion != "s" && opcion != "N" && opcion != "n");
             if (opcion=="S" || opcion == "s") {
                 comprar = true;
