@@ -6,6 +6,8 @@ let valorProducto;
 let cantidadProdu;
 let montoCarrito = 0;
 let cantidad = 0;
+let i = 0;
+let arrayRenglon = [];
 const iva = 1.21; /*defino al IVA como constante */
 
 function determinarEsNumero(valor) {
@@ -32,11 +34,18 @@ class renglon {
 
 while (comprar==true) { /*mientras quiera seguir comprando */
 
-    const renglonNew = new renglon();
+    let renglonNew = new renglon();
 
     //obtengo todos los valores, despues los tomaré de un control o componente
     //idProducto = prompt ("Ingrese el PRODUCTO (ID) que desea comprar: (Ejemplo: AB-5003)");
     renglonNew.id = prompt ("Ingrese el PRODUCTO (ID) que desea comprar: (Ejemplo: AB-5003)");
+
+    console.log(renglonNew.id);
+
+    //Me aseguro que ingrese un valor numerico de precio, sino es asi lo pido de nuevo hasta que sea correcto
+    while (renglonNew.id==null) {
+        renglonNew.id = prompt ("No ha ingresado un ID. Intentelo de nuevo, por favor");
+    }
 
     valorProducto = parseFloat(prompt("Ingrese el valor del producto que desea comprar")); /* este valor lo tomaría del ID de una BD*/
 
@@ -63,6 +72,9 @@ while (comprar==true) { /*mientras quiera seguir comprando */
     //calculo el subtotal de la compra y sumo ese subtotal valorizado del carrito
     montoCarrito = (montoCarrito + renglonNew.subtotal);
 
+    arrayRenglon [i] = renglonNew;
+    i = i + 1;
+
     //Muestro el renglon completo del carrito de compras, como si fuera el registro de una factura
     console.log("ID:(" + renglonNew.id + ")-Descripcion Producto " + cantidad + "-Cantidad:" + renglonNew.cantidad + "-Precio Producto:$" + renglonNew.precio);
 
@@ -84,11 +96,13 @@ while (comprar==true) { /*mientras quiera seguir comprando */
         case "N":
             comprar = false; /*e informa el monto de la compra total */
             alert("Ud. compró " + cantidad + " producto/s por un valor total de $" + montoCarrito);
+            console.log(arrayRenglon);
             break;
 
         case "n":
             comprar = false; /*e informa el monto de la compra total */
             alert("Ud. compró " + cantidad + " producto/s por un valor total de $" + montoCarrito);
+            console.log(arrayRenglon);
             break;
         
         default:
