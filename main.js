@@ -42,7 +42,7 @@ while (comprar==true) { /*mientras quiera seguir comprando */
 
     console.log(renglonNew.id);
 
-    //Me aseguro que ingrese un valor numerico de precio, sino es asi lo pido de nuevo hasta que sea correcto
+    //Me aseguro que ingrese un valor de codigo, sino es asi lo pido de nuevo hasta que sea correcto
     while (renglonNew.id==null) {
         renglonNew.id = prompt ("No ha ingresado un ID. Intentelo de nuevo, por favor");
     }
