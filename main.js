@@ -19,7 +19,7 @@ function determinarEsNumero(valor) {
     }    
 }
 
-class renglon {
+class Renglon {
     constructor (id, precio, cantidad){
         this.nroFila;
         this.id = id;
@@ -35,13 +35,10 @@ class renglon {
 
 while (comprar==true) { /*mientras quiera seguir comprando */
 
-    let renglonNew = new renglon();
+    let renglonNew = new Renglon();
 
     //obtengo todos los valores, despues los tomaré de un control o componente
-    //idProducto = prompt ("Ingrese el PRODUCTO (ID) que desea comprar: (Ejemplo: AB-5003)");
     renglonNew.id = prompt ("Ingrese el PRODUCTO (ID) que desea comprar: (Ejemplo: AB-5003)");
-
-    console.log(renglonNew.id);
 
     //Me aseguro que ingrese un valor de codigo, sino es asi lo pido de nuevo hasta que sea correcto
     while (renglonNew.id==null) {
@@ -55,7 +52,7 @@ while (comprar==true) { /*mientras quiera seguir comprando */
         valorProducto = parseFloat(prompt("El valor ingresado no es correcto. Ingrese nuevamente el valor del producto que desea comprar")); /* este valor lo tomaría del ID de una BD*/
     }
     
-    renglonNew.precio = valorProducto; //asigno el valor a la propiedad recien cdo me asegure que es un valor correcto
+    renglonNew.precio = valorProducto.toFixed(2); //asigno el valor a la propiedad recien cdo me asegure que es un valor correcto
 
     cantidadProdu = parseInt(prompt("Ingrese la cantidad del producto que desea comprar"));
 
@@ -68,7 +65,7 @@ while (comprar==true) { /*mientras quiera seguir comprando */
 
     cantidad = cantidad + 1; /*al ingresar un producto al carrito incremento el contador de productos */
 
-    renglonNew.calcularRenglon();
+    renglonNew.calcularRenglon(); //Obtiene el subtotal de la compra aplicando el IVA
 
     renglonNew.nroFila = i;
 
@@ -83,7 +80,7 @@ while (comprar==true) { /*mientras quiera seguir comprando */
     console.log("ID:(" + renglonNew.id + ")-Descripcion Producto " + cantidad + "-Cantidad:" + renglonNew.cantidad + "-Precio Producto:$" + renglonNew.precio);
 
     //informo el subtotal de la compra hasta el momento, despues lo mostraría en un componente
-    alert("Hasta ahora el monto de su carrito de compras es $" + montoCarrito);
+    alert("Hasta ahora el monto de su carrito de compras es $" + montoCarrito.toFixed(2));
 
     //pregunto si quiero seguir comprando
     opcion = prompt ("Desea seguir comprando? (S/N)");
@@ -99,14 +96,32 @@ while (comprar==true) { /*mientras quiera seguir comprando */
 
         case "N":
             comprar = false; /*e informa el monto de la compra total */
-            alert("Ud. compró " + cantidad + " producto/s por un valor total de $" + montoCarrito);
+            alert("Ud. compró " + cantidad + " producto/s por un valor total de $" + montoCarrito.toFixed(2) + "\n");
             console.log(arrayRenglon);
+
+            //Uso Funciones de Orden Superior para recorrer el arreglo/carrito para mostrarselo al usuario
+            arrayRenglon.forEach((renglonNew)=>{
+                alert("Nº " + renglonNew.nroFila + "\n" +
+                "Producto: " + renglonNew.id + "\n" + 
+                "Precio Unitario: $" + renglonNew.precio + "\n" +
+                "Cantidad: " + renglonNew.cantidad + "\n" +
+                "Subtotal con IVA: $" + renglonNew.subtotal.toFixed(2));
+            });
             break;
 
         case "n":
             comprar = false; /*e informa el monto de la compra total */
-            alert("Ud. compró " + cantidad + " producto/s por un valor total de $" + montoCarrito);
+            alert("Ud. compró " + cantidad + " producto/s por un valor total de $" + montoCarrito.toFixed(2) + "\n");
             console.log(arrayRenglon);
+
+            //Uso Funciones de Orden Superior para recorrer el arreglo/carrito para mostrarselo al usuario
+            arrayRenglon.forEach((renglonNew)=>{
+                alert("Nº " + renglonNew.nroFila + "\n" +
+                "Producto: " + renglonNew.id + "\n" + 
+                "Precio Unitario: $" + renglonNew.precio + "\n" +
+                "Cantidad: " + renglonNew.cantidad + "\n" +
+                "Subtotal con IVA: $" + renglonNew.subtotal.toFixed(2));
+            });
             break;
         
         default:
