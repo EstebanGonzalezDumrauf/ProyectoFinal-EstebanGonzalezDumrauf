@@ -107,6 +107,17 @@ while (comprar==true) { /*mientras quiera seguir comprando */
                 "Cantidad: " + renglonNew.cantidad + "\n" +
                 "Subtotal con IVA: $" + renglonNew.subtotal.toFixed(2));
             });
+
+            //Aca utilizo DOM para informar que la compra a finalizado, mostrando un resumen de lo comprado
+            const tituloPrincipalHTML = document.getElementById("tituloPrincipal");
+            tituloPrincipalHTML.innerText = "GRACIAS POR SU COMPRA";
+
+            const divContenedorRdoN = document.getElementById("divContenedorResultado");
+            arrayRenglon.forEach((renglonNew)=>{
+                divContenedorRdoN.innerHTML = divContenedorRdoN.innerHTML + 
+                ` <p> Nº ${renglonNew.nroFila} <br> Producto: ${renglonNew.id} <br> Precio Unitario: $ ${renglonNew.precio} <br> Cantidad: ${renglonNew.cantidad} <br> Subtotal con IVA: $ ${renglonNew.subtotal.toFixed(2)}<p> `
+            });
+
             break;
 
         case "n":
@@ -122,6 +133,18 @@ while (comprar==true) { /*mientras quiera seguir comprando */
                 "Cantidad: " + renglonNew.cantidad + "\n" +
                 "Subtotal con IVA: $" + renglonNew.subtotal.toFixed(2));
             });
+
+            //Aca utilizo DOM para informar que la compra a finalizado, mostrando un resumen de lo comprado
+            const tituloPrincipalHTMLn = document.getElementById("tituloPrincipal");
+            tituloPrincipalHTMLn.innerText = "GRACIAS POR SU COMPRA";
+
+            const divContenedorRdon = document.getElementById("divContenedorResultado");
+
+            arrayRenglon.forEach((renglonNew)=>{
+                divContenedorRdon.innerHTML = divContenedorRdon.innerHTML + 
+                ` <p> Nº ${renglonNew.nroFila} <br> Producto: ${renglonNew.id} <br> Precio Unitario: $ ${renglonNew.precio} <br> Cantidad: ${renglonNew.cantidad} <br> Subtotal con IVA: $ ${renglonNew.subtotal.toFixed(2)}<p> `
+            });
+
             break;
         
         default:
