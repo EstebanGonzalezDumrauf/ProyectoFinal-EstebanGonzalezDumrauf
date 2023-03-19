@@ -50,7 +50,7 @@
                             <label for="">Cantidad:</label>
                             <input type="text" value= 1 id="textProdA" style="margin-bottom: 15px; width: 50px; ">
                         </div>
-                        <a id="botonProdA" href="#" class="btn btn-primary">Comprar</a>
+                        <a id="botonProdA" class="btn btn-primary">Comprar</a>
                     </div>
                 </div>
             </div>
@@ -70,7 +70,7 @@
                             <label for="">Cantidad:</label>
                             <input type="text" value= 1 id="textProdB" style="margin-bottom: 15px; width: 50px; ">
                         </div>
-                        <a id="botonProdB" href="#" class="btn btn-primary">Comprar</a>
+                        <a id="botonProdB" class="btn btn-primary">Comprar</a>
                     </div>
                 </div>
             </div>
@@ -90,7 +90,7 @@
                             <label for="">Cantidad:</label>
                             <input type="text" value= 1 id="textProdC" style="margin-bottom: 15px; width: 50px; ">
                         </div>
-                        <a id="botonProdC" href="#" class="btn btn-primary">Comprar</a>
+                        <a id="botonProdC" class="btn btn-primary">Comprar</a>
                     </div>
                 </div>
             </div>
@@ -110,7 +110,7 @@
                             <label for="">Cantidad:</label>
                             <input type="text" value= 1 id="textProdD" style="margin-bottom: 15px; width: 50px; ">
                         </div>
-                        <a id="botonProdD" href="#" class="btn btn-primary">Comprar</a>
+                        <a id="botonProdD" class="btn btn-primary">Comprar</a>
                     </div>
                 </div>
             </div>
@@ -120,7 +120,26 @@
     <div id="divContenedorResultado">
     </div>
 
-    <a id= "botonFinalizar" href="#" class="btn btn-primary">FINALIZAR COMPRA</a>
+    <div class="table-responsive">
+        <table id="tablaCarrito" class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Codigo</th>
+                <th scope="col">Descripción</th>
+                <th scope="col">Precio</th>
+                <th scope="col">Cantidad</th>
+                <th scope="col">Subtotal c/IVA</th>
+            </tr>
+        </thead>
+        <tbody id="bodyDelCarrito">
+
+        </tbody>
+        </table>
+    </div>
+
+
+    <a id= "botonFinalizar" class="btn btn-primary">FINALIZAR COMPRA</a>
 
     <script src="main.js"></script>
 </body>

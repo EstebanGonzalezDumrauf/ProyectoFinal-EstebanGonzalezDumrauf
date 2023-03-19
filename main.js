@@ -24,14 +24,20 @@ function valorPorDefecto () {
 }
 
 function mostrarRenglonCarrito(renglon) {
-    const divContenedorRdoN = document.getElementById("divContenedorResultado");
+    // const divContenedorRdoN = document.getElementById("divContenedorResultado");
 
-    divContenedorRdoN.innerHTML = divContenedorRdoN.innerHTML + 
-                                    ` <p> Nº ${renglon.nroFila} <br> Producto: ${renglon.id} <br> ${renglon.descripcion} <br> Precio Unitario: $ ${renglon.precio} <br> Cantidad: ${renglon.cantidad} <br> Subtotal con IVA: $ ${renglon.subtotal.toFixed(2)}<p> `;
+    // divContenedorRdoN.innerHTML = divContenedorRdoN.innerHTML + 
+    //                                 ` <p> Nº ${renglon.nroFila} <br> Producto: ${renglon.id} <br> ${renglon.descripcion} <br> Precio Unitario: $ ${renglon.precio} <br> Cantidad: ${renglon.cantidad} <br> Subtotal con IVA: $ ${renglon.subtotal.toFixed(2)}<p> `;
 
     const cantidadEnCarrito = document.getElementById("cantidadProdu");
 
     cantidadEnCarrito.innerHTML = renglon.nroFila;
+
+    const cuerpoDelCarrito = document.getElementById("bodyDelCarrito");
+
+    cuerpoDelCarrito.innerHTML = cuerpoDelCarrito.innerHTML + `<tr> <th scope="row">1</th> <td>${renglon.id}</td>` +
+    `<td>${renglon.descripcion}</td> <td>$${renglon.precio}</td> <td>${renglon.cantidad}</td> <td>$${renglon.subtotal.toFixed(2)}</td> </tr>`
+
 }
 
 class Renglon {
@@ -156,15 +162,14 @@ botonFinalizar.addEventListener("click", ()=> {
         const productosHTML = document.getElementById("listadoProdu");
         productosHTML.innerHTML = `<h2> Ud. ha comprado los siguientes productos </h2>`;
 
-        const divContenedorRdoN = document.getElementById("divContenedorResultado");
-        divContenedorRdoN.innerHTML = ``;
-        arrayRenglon.forEach((renglonNew)=>{
-            divContenedorRdoN.innerHTML = divContenedorRdoN.innerHTML + 
-        ` <p> Nº ${renglonNew.nroFila} <br> Producto: ${renglonNew.id} <br> ${renglonNew.descripcion} ` + 
-        ` <br> Precio Unitario: $ ${renglonNew.precio} <br> Cantidad: ${renglonNew.cantidad} <br> Subtotal con IVA: ` +
-        ` $ ${renglonNew.subtotal.toFixed(2)}<p> `;
-
-    });
+        // const divContenedorRdoN = document.getElementById("divContenedorResultado");
+        // divContenedorRdoN.innerHTML = ``;
+        // arrayRenglon.forEach((renglonNew)=>{
+        //     divContenedorRdoN.innerHTML = divContenedorRdoN.innerHTML + 
+        // ` <p> Nº ${renglonNew.nroFila} <br> Producto: ${renglonNew.id} <br> ${renglonNew.descripcion} ` + 
+        // ` <br> Precio Unitario: $ ${renglonNew.precio} <br> Cantidad: ${renglonNew.cantidad} <br> Subtotal con IVA: ` +
+        // ` $ ${renglonNew.subtotal.toFixed(2)}<p> `;
+        // });
     divContenedorRdoN.innerHTML = divContenedorRdoN.innerHTML + `<br> <h2> TOTAL: $ ${montoCarrito.toFixed(2)} `
 })
 
