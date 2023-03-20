@@ -9,7 +9,9 @@
 </head>
 <body>
 
-    <div>
+
+
+    <!-- <div>
         <div>
             <h1 id="tituloPrincipal" style="text-align: center;">
                 MI CARRITO DE COMPRAS
@@ -21,10 +23,38 @@
                 0
             </h2>
         </div>
-    </div>
+    </div> -->
 
+    <section class="container"> 
+        <div class="row" style="margin: auto auto; align-items:baseline; align-content: center;">
+                        
+            <!-- <div class="col-lg-3 col-md-2 col-sm-12">                
+            </div> -->
 
+            <div class="col-lg-2 col-md-1 col-sm-12 text-center">
+                <img src="img/pie/logotipo.jpg" alt="Logotipo Empresa Shining Life" width="80px" height="80px"/>
+            </div>
+        
+            <div class="col-lg-8 col-md-8 col-sm-12 text-center" style="justify-content: left;">
+                <h1>
+                    MI CARRITO DE COMPRAS
+                </h1>
+            </div>    
 
+            <div class="col-lg-1 col-md-1 col-sm-12">      
+                <img src="img/heading/carrito.png" alt="Logo de carrito de compras" width="80" height="80"/>       
+            </div>
+
+            <div class="col-lg-1 col-md-1 col-sm-12">      
+                <h1 id="cantidadProdu" >
+                    0
+                </h1>          
+            </div>
+        </div> 
+    </section> 
+    
+    <br>
+    <br>
 
     <section>
         <!-- <h2>
@@ -104,7 +134,7 @@
                         <div>
                             <img src="img/pie/3er.png" alt="Logo de Medalla de Bonce" width="40" height="40"/>
                         </div> 
-                        <h5 class="card-title">Body Splash Cereza y Avellanas</h5>
+                        <h5 class="card-title">Body Splash Cereza</h5>
                         <h2 class="card-text">$ 2513</h2>
                         <div>
                             <label for="">Cantidad:</label>
@@ -117,8 +147,7 @@
         </div> 
     </div>
 
-    <div id="divContenedorResultado">
-    </div>
+
 
     <div class="table-responsive">
         <table id="tablaCarrito" class="table">
@@ -138,8 +167,12 @@
         </table>
     </div>
 
+    <div id="regionBotonFinalizar">
+        <a id= "botonFinalizar" class="btn btn-primary">FINALIZAR COMPRA</a>
+    </div>    
 
-    <a id= "botonFinalizar" class="btn btn-primary">FINALIZAR COMPRA</a>
+    <div id="divContenedorResultado">
+    </div>
 
     <script src="main.js"></script>
 </body>

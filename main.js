@@ -7,6 +7,7 @@ let cantidadProdu;
 let montoCarrito = 0;
 let cantidad = 0;
 let i = 1;
+let objetosDelCarrito = 0;
 let arrayRenglon = [];
 const iva = 1.21; /*defino al IVA como constante */
 
@@ -31,11 +32,11 @@ function mostrarRenglonCarrito(renglon) {
 
     const cantidadEnCarrito = document.getElementById("cantidadProdu");
 
-    cantidadEnCarrito.innerHTML = renglon.nroFila;
+    cantidadEnCarrito.innerHTML = objetosDelCarrito;
 
     const cuerpoDelCarrito = document.getElementById("bodyDelCarrito");
 
-    cuerpoDelCarrito.innerHTML = cuerpoDelCarrito.innerHTML + `<tr> <th scope="row">1</th> <td>${renglon.id}</td>` +
+    cuerpoDelCarrito.innerHTML = cuerpoDelCarrito.innerHTML + `<tr> <th scope="row">${renglon.nroFila}</th> <td>${renglon.id}</td>` +
     `<td>${renglon.descripcion}</td> <td>$${renglon.precio}</td> <td>${renglon.cantidad}</td> <td>$${renglon.subtotal.toFixed(2)}</td> </tr>`
 
 }
@@ -79,6 +80,7 @@ botonProduA.addEventListener("click", ()=> {
     textProduA.value = 1;
 
     i = i + 1;
+    objetosDelCarrito = objetosDelCarrito + renglonNew.cantidad;
 
     arrayRenglon.push(renglonNew);
     console.log(arrayRenglon);
@@ -101,6 +103,7 @@ botonProduB.addEventListener("click", ()=> {
     const textProduB = document.getElementById("textProdB");
     textProduB.value = 1;
 
+    objetosDelCarrito = objetosDelCarrito + renglonNew.cantidad;
     i = i + 1;
 
     arrayRenglon.push (renglonNew);
@@ -124,6 +127,7 @@ botonProduC.addEventListener("click", ()=> {
     const textProduC = document.getElementById("textProdC");
     textProduC.value = 1;
 
+    objetosDelCarrito = objetosDelCarrito + renglonNew.cantidad;
     i = i + 1;
 
     arrayRenglon.push (renglonNew);
@@ -147,6 +151,7 @@ botonProduD.addEventListener("click", ()=> {
     const textProduD = document.getElementById("textProdD");
     textProduD.value = 1;
 
+    objetosDelCarrito = objetosDelCarrito + renglonNew.cantidad;
     i = i + 1;
 
     arrayRenglon.push (renglonNew);
@@ -156,11 +161,9 @@ botonProduD.addEventListener("click", ()=> {
 
 botonFinalizar.addEventListener("click", ()=> {
 //Aca utilizo DOM para informar que la compra a finalizado, mostrando un resumen de lo comprado
-        const tituloPrincipalHTML = document.getElementById("tituloPrincipal");
-        tituloPrincipalHTML.innerText = "GRACIAS POR SU COMPRA";
 
-        const productosHTML = document.getElementById("listadoProdu");
-        productosHTML.innerHTML = `<h2> Ud. ha comprado los siguientes productos </h2>`;
+    const productosHTML = document.getElementById("listadoProdu");
+    productosHTML.innerHTML = `<h2> Ud. ha comprado los siguientes productos </h2>`;
 
         // const divContenedorRdoN = document.getElementById("divContenedorResultado");
         // divContenedorRdoN.innerHTML = ``;
@@ -170,7 +173,12 @@ botonFinalizar.addEventListener("click", ()=> {
         // ` <br> Precio Unitario: $ ${renglonNew.precio} <br> Cantidad: ${renglonNew.cantidad} <br> Subtotal con IVA: ` +
         // ` $ ${renglonNew.subtotal.toFixed(2)}<p> `;
         // });
+
+    const divContenedorRdoN = document.getElementById("divContenedorResultado");
     divContenedorRdoN.innerHTML = divContenedorRdoN.innerHTML + `<br> <h2> TOTAL: $ ${montoCarrito.toFixed(2)} `
+
+    const divbotonFin = document.getElementById("regionBotonFinalizar");
+    divbotonFin.innerHTML = `<p> </p> `
 })
 
 
