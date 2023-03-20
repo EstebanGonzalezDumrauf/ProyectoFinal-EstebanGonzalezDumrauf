@@ -17,7 +17,7 @@ const iva = 1.21; /*defino al IVA como constante */
 //         return false
 //     } else {
 //         return true
-//     }    
+//     }
 // }
 
 function valorPorDefecto () {
@@ -27,7 +27,7 @@ function valorPorDefecto () {
 function mostrarRenglonCarrito(renglon) {
     // const divContenedorRdoN = document.getElementById("divContenedorResultado");
 
-    // divContenedorRdoN.innerHTML = divContenedorRdoN.innerHTML + 
+    // divContenedorRdoN.innerHTML = divContenedorRdoN.innerHTML +
     //                                 ` <p> Nº ${renglon.nroFila} <br> Producto: ${renglon.id} <br> ${renglon.descripcion} <br> Precio Unitario: $ ${renglon.precio} <br> Cantidad: ${renglon.cantidad} <br> Subtotal con IVA: $ ${renglon.subtotal.toFixed(2)}<p> `;
 
     const cantidadEnCarrito = document.getElementById("cantidadProdu");
@@ -59,9 +59,21 @@ class Renglon {
 const botonProduA = document.getElementById("botonProdA");
 const botonProduB = document.getElementById("botonProdB");
 const botonProduC = document.getElementById("botonProdC");
-const botonProduD = document.getElementById("botonProdD"); 
-const botonFinalizar = document.getElementById("botonFinalizar"); 
+const botonProduD = document.getElementById("botonProdD");
+const botonFinalizar = document.getElementById("botonFinalizar");
 
+// arrayRenglon = JSON.parse(localStorage.getItem('BD'));
+// let renglonExist = new Renglon();
+ //Uso Funciones de Orden Superior para recorrer el arreglo/carrito para mostrarselo al usuario
+// arrayRenglon.forEach((renglonNew)=>{
+//     mostrarRenglonCarrito(renglonNew);
+//       //calculo el subtotal de la compra y sumo ese subtotal valorizado del carrito
+//     montoCarrito = (montoCarrito + renglonNew.subtotal);
+
+//     i = i + 1;
+//     objetosDelCarrito = objetosDelCarrito + renglonNew.cantidad;
+
+// });
 
 botonProduA.addEventListener("click", ()=> {
 
@@ -72,7 +84,7 @@ botonProduA.addEventListener("click", ()=> {
     renglonNew.id = "CUI-4756";
     renglonNew.descripcion = "Labial Matte Instranferible";
     renglonNew.calcularRenglon(); //Obtiene el subtotal de la compra aplicando el IVA
-    
+
     //calculo el subtotal de la compra y sumo ese subtotal valorizado del carrito
     montoCarrito = (montoCarrito + renglonNew.subtotal);
 
@@ -82,8 +94,8 @@ botonProduA.addEventListener("click", ()=> {
     i = i + 1;
     objetosDelCarrito = objetosDelCarrito + renglonNew.cantidad;
 
-    arrayRenglon.push(renglonNew);
-    console.log(arrayRenglon);
+    arrayRenglon.push (renglonNew);
+    localStorage.setItem('BD', JSON.stringify(arrayRenglon))
     mostrarRenglonCarrito(renglonNew);
 })
 
@@ -96,7 +108,7 @@ botonProduB.addEventListener("click", ()=> {
     renglonNew.id = "CUI-4750";
     renglonNew.descripcion = "Iluminador Dúo Super Brillo";
     renglonNew.calcularRenglon(); //Obtiene el subtotal de la compra aplicando el IVA
-    
+
     //calculo el subtotal de la compra y sumo ese subtotal valorizado del carrito
     montoCarrito = (montoCarrito + renglonNew.subtotal);
 
@@ -107,7 +119,7 @@ botonProduB.addEventListener("click", ()=> {
     i = i + 1;
 
     arrayRenglon.push (renglonNew);
-    console.log(arrayRenglon);
+    localStorage.setItem('BD', JSON.stringify(arrayRenglon))
     mostrarRenglonCarrito(renglonNew);
 })
 
@@ -120,7 +132,7 @@ botonProduC.addEventListener("click", ()=> {
     renglonNew.id = "CUI-4700";
     renglonNew.descripcion = "Hidratante de Manos 75g";
     renglonNew.calcularRenglon(); //Obtiene el subtotal de la compra aplicando el IVA
-    
+
     //calculo el subtotal de la compra y sumo ese subtotal valorizado del carrito
     montoCarrito = (montoCarrito + renglonNew.subtotal);
 
@@ -131,7 +143,7 @@ botonProduC.addEventListener("click", ()=> {
     i = i + 1;
 
     arrayRenglon.push (renglonNew);
-    console.log(arrayRenglon);
+    localStorage.setItem('BD', JSON.stringify(arrayRenglon))
     mostrarRenglonCarrito(renglonNew);
 })
 
@@ -144,7 +156,7 @@ botonProduD.addEventListener("click", ()=> {
     renglonNew.id = "PERF-4000";
     renglonNew.descripcion = "Body Splash Cereza y Avellanas";
     renglonNew.calcularRenglon(); //Obtiene el subtotal de la compra aplicando el IVA
-    
+
     //calculo el subtotal de la compra y sumo ese subtotal valorizado del carrito
     montoCarrito = (montoCarrito + renglonNew.subtotal);
 
@@ -155,7 +167,7 @@ botonProduD.addEventListener("click", ()=> {
     i = i + 1;
 
     arrayRenglon.push (renglonNew);
-    console.log(arrayRenglon);
+    localStorage.setItem('BD', JSON.stringify(arrayRenglon))
     mostrarRenglonCarrito(renglonNew);
 })
 
@@ -168,8 +180,8 @@ botonFinalizar.addEventListener("click", ()=> {
         // const divContenedorRdoN = document.getElementById("divContenedorResultado");
         // divContenedorRdoN.innerHTML = ``;
         // arrayRenglon.forEach((renglonNew)=>{
-        //     divContenedorRdoN.innerHTML = divContenedorRdoN.innerHTML + 
-        // ` <p> Nº ${renglonNew.nroFila} <br> Producto: ${renglonNew.id} <br> ${renglonNew.descripcion} ` + 
+        //     divContenedorRdoN.innerHTML = divContenedorRdoN.innerHTML +
+        // ` <p> Nº ${renglonNew.nroFila} <br> Producto: ${renglonNew.id} <br> ${renglonNew.descripcion} ` +
         // ` <br> Precio Unitario: $ ${renglonNew.precio} <br> Cantidad: ${renglonNew.cantidad} <br> Subtotal con IVA: ` +
         // ` $ ${renglonNew.subtotal.toFixed(2)}<p> `;
         // });
@@ -222,7 +234,7 @@ botonFinalizar.addEventListener("click", ()=> {
 //         case "S":
 //             comprar = true;
 //             break;
-        
+
 //         case "s":
 //             comprar = true;
 //             break;
@@ -235,7 +247,7 @@ botonFinalizar.addEventListener("click", ()=> {
 //             //Uso Funciones de Orden Superior para recorrer el arreglo/carrito para mostrarselo al usuario
 //             arrayRenglon.forEach((renglonNew)=>{
 //                 alert("Nº " + renglonNew.nroFila + "\n" +
-//                 "Producto: " + renglonNew.id + "\n" + 
+//                 "Producto: " + renglonNew.id + "\n" +
 //                 "Precio Unitario: $" + renglonNew.precio + "\n" +
 //                 "Cantidad: " + renglonNew.cantidad + "\n" +
 //                 "Subtotal con IVA: $" + renglonNew.subtotal.toFixed(2));
@@ -247,7 +259,7 @@ botonFinalizar.addEventListener("click", ()=> {
 
 //             const divContenedorRdoN = document.getElementById("divContenedorResultado");
 //             arrayRenglon.forEach((renglonNew)=>{
-//                 divContenedorRdoN.innerHTML = divContenedorRdoN.innerHTML + 
+//                 divContenedorRdoN.innerHTML = divContenedorRdoN.innerHTML +
 //                 ` <p> Nº ${renglonNew.nroFila} <br> Producto: ${renglonNew.id} <br> Precio Unitario: $ ${renglonNew.precio} <br> Cantidad: ${renglonNew.cantidad} <br> Subtotal con IVA: $ ${renglonNew.subtotal.toFixed(2)}<p> `
 //             });
 
@@ -261,7 +273,7 @@ botonFinalizar.addEventListener("click", ()=> {
 //             //Uso Funciones de Orden Superior para recorrer el arreglo/carrito para mostrarselo al usuario
 //             arrayRenglon.forEach((renglonNew)=>{
 //                 alert("Nº " + renglonNew.nroFila + "\n" +
-//                 "Producto: " + renglonNew.id + "\n" + 
+//                 "Producto: " + renglonNew.id + "\n" +
 //                 "Precio Unitario: $" + renglonNew.precio + "\n" +
 //                 "Cantidad: " + renglonNew.cantidad + "\n" +
 //                 "Subtotal con IVA: $" + renglonNew.subtotal.toFixed(2));
@@ -274,12 +286,12 @@ botonFinalizar.addEventListener("click", ()=> {
 //             const divContenedorRdon = document.getElementById("divContenedorResultado");
 
 //             arrayRenglon.forEach((renglonNew)=>{
-//                 divContenedorRdon.innerHTML = divContenedorRdon.innerHTML + 
+//                 divContenedorRdon.innerHTML = divContenedorRdon.innerHTML +
 //                 ` <p> Nº ${renglonNew.nroFila} <br> Producto: ${renglonNew.id} <br> Precio Unitario: $ ${renglonNew.precio} <br> Cantidad: ${renglonNew.cantidad} <br> Subtotal con IVA: $ ${renglonNew.subtotal.toFixed(2)}<p> `
 //             });
 
 //             break;
-        
+
 //         default:
 //             do { opcion = prompt ("Ha ingresado una opción inválida. Desea seguir comprando? (S/N)");
 //             } while (opcion != "S" && opcion != "s" && opcion != "N" && opcion != "n");
