@@ -20,16 +20,8 @@ const iva = 1.21; /*defino al IVA como constante */
 //     }
 // }
 
-function valorPorDefecto () {
-
-}
-
 function mostrarRenglonCarrito(renglon) {
-    // const divContenedorRdoN = document.getElementById("divContenedorResultado");
-
-    // divContenedorRdoN.innerHTML = divContenedorRdoN.innerHTML +
-    //                                 ` <p> Nº ${renglon.nroFila} <br> Producto: ${renglon.id} <br> ${renglon.descripcion} <br> Precio Unitario: $ ${renglon.precio} <br> Cantidad: ${renglon.cantidad} <br> Subtotal con IVA: $ ${renglon.subtotal.toFixed(2)}<p> `;
-
+    
     const cantidadEnCarrito = document.getElementById("cantidadProdu");
 
     cantidadEnCarrito.innerHTML = objetosDelCarrito;
@@ -62,18 +54,17 @@ const botonProduC = document.getElementById("botonProdC");
 const botonProduD = document.getElementById("botonProdD");
 const botonFinalizar = document.getElementById("botonFinalizar");
 
-// arrayRenglon = JSON.parse(localStorage.getItem('BD'));
-// let renglonExist = new Renglon();
- //Uso Funciones de Orden Superior para recorrer el arreglo/carrito para mostrarselo al usuario
-// arrayRenglon.forEach((renglonNew)=>{
-//     mostrarRenglonCarrito(renglonNew);
-//       //calculo el subtotal de la compra y sumo ese subtotal valorizado del carrito
-//     montoCarrito = (montoCarrito + renglonNew.subtotal);
+arrayRenglon = JSON.parse(localStorage.getItem('BD')) || [];
+for (let j = 0; j <= arrayRenglon.length - 1; j++) {
 
-//     i = i + 1;
-//     objetosDelCarrito = objetosDelCarrito + renglonNew.cantidad;
+    objetosDelCarrito = objetosDelCarrito + arrayRenglon[j].cantidad;
 
-// });
+    montoCarrito = (montoCarrito + arrayRenglon[j].subtotal);
+
+    mostrarRenglonCarrito(arrayRenglon[j]);
+
+    i = i + 1;
+}
 
 botonProduA.addEventListener("click", ()=> {
 
