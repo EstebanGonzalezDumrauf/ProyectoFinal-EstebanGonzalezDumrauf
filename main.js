@@ -87,6 +87,7 @@ function agregarAlCarrito (prod){
     if (existe === false) {
         renglonNew.precio = prod.precio;
         renglonNew.id = prod.id;
+        renglonNew.cantidad = parseInt(document.getElementById("textProd" + prod.id).value);
         renglonNew.descripcion = prod.descripcion;
         renglonNew.calcularRenglon(); //Obtiene el subtotal de la compra aplicando el IVA
     
