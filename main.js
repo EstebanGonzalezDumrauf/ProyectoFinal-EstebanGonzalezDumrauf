@@ -11,14 +11,105 @@ let objetosDelCarrito = 0;
 let arrayRenglon = [];
 const iva = 1.21; /*defino al IVA como constante */
 
-// function determinarEsNumero(valor) {
-//     if (isNaN(valor)) {
-//         console.log("Error. No es un valor numérico el ingresado")
-//         return false
-//     } else {
-//         return true
-//     }
-// }
+//****************************************************nuevo metodologiaaaaaaaaaaaaaaaaaa */
+let productos = [
+    {
+        id: 'AB-5001',
+        descripcion: 'Labial Matte Instranferible',
+        precio: 3338,
+        img: './img/productos/belleza/bell3.jpeg'
+    },
+
+    {
+        id: 'AC-5005',
+        descripcion: 'Iluminador Dúo Super Brillo',
+        precio: 2645,
+        img: './img/productos/belleza/bell1.jpeg'
+    },
+
+    {
+        id: 'DB-7110',
+        descripcion: 'Hidratante de Manos 75g',
+        precio: 1120,
+        img: './img/productos/cuidados/cui1.jpeg'
+    }, 
+
+    {
+        id: 'CT-2350',
+        descripcion: 'Body Splash Cereza',
+        precio: 3513,
+        img: './img/productos/perfumeria/perf5.jpeg'
+    }
+]
+
+let main = document.getElementById("bolsaProductos");
+
+function crearCards (){
+    productos.forEach(prod=>{
+        main.innerHTML += ` <div class="col-lg-3 col-md-6 col-sm-12">
+                <div class="card justify-content-center align-items-center" style="width: 18rem; margin: auto auto; align-items: center; margin-bottom: 15px; " >
+                    <div>
+                        <img class= "produ" src="${prod.img}" alt="Producto mas vendido" width="250" height="250"/>
+                    </div>
+                    <div class="card-body text-center">
+                        <div>
+                            <img src="img/pie/1er.png" alt="Logo de Medalla de Oro" width="40" height="40"/>
+                        </div> 
+                        <h5 class="card-title">${prod.descripcion}</h5>
+                        <h2 class="card-text">$ ${prod.precio}</h2>
+                        <div>
+                            <label for="">Cantidad:</label>
+                            <input type="text" value= 1 id="textProd${prod.id}" style="margin-bottom: 15px; width: 50px; ">
+                        </div>
+                        <a id="botonProd${prod.id}" class="btn btn-primary">Comprar</a>
+                    </div>
+                </div>
+            </div> `
+    })
+    darFuncionalidadCarrito ();
+}
+
+function darFuncionalidadCarrito (){
+    productos.forEach((prod)=> {
+        document.getElementById(`botonProd${prod.id}`).addEventListener('click', () =>{
+            agregarAlCarrito(prod);
+        })
+    })
+}
+
+function agregarAlCarrito (prod){
+    let renglonNew = new Renglon();
+    renglonNew.nroFila = i;
+
+    //buscar si ya existe el renglon ***************************
+    let existe = arrayRenglon.some(element=>element.id === prod.id)
+
+    if (existe === false) {
+        renglonNew.precio = prod.precio;
+        renglonNew.id = prod.id;
+        renglonNew.descripcion = prod.descripcion;
+        renglonNew.calcularRenglon(); //Obtiene el subtotal de la compra aplicando el IVA
+    
+        //calculo el subtotal de la compra y sumo ese subtotal valorizado del carrito
+        montoCarrito = (montoCarrito + renglonNew.subtotal);
+    
+        const textProdu = document.getElementById("textProd" + prod.id);
+        textProdu.value = 1;
+    
+        i = i + 1;
+        objetosDelCarrito = objetosDelCarrito + renglonNew.cantidad;
+    
+        arrayRenglon.push (renglonNew);
+        localStorage.setItem('BD', JSON.stringify(arrayRenglon))
+        mostrarRenglonCarrito(renglonNew);
+    } else {
+///////////////////////////////////PENDIENTEEEEEEEEEEEEEEEEEE VIDEO MINUTO 44:00 ///////////////////////////
+    }
+
+    renglonNew.cantidad = parseInt(document.getElementById("textProd" + prod.id).value);
+
+}
+//****************************************************nuevo metodologiaaaaaaaaaaaaaaaaaa */
 
 function mostrarRenglonCarrito(renglon) {
     
@@ -48,12 +139,6 @@ class Renglon {
     }
 }
 
-const botonProduA = document.getElementById("botonProdA");
-const botonProduB = document.getElementById("botonProdB");
-const botonProduC = document.getElementById("botonProdC");
-const botonProduD = document.getElementById("botonProdD");
-const botonFinalizar = document.getElementById("botonFinalizar");
-
 arrayRenglon = JSON.parse(localStorage.getItem('BD')) || [];
 for (let j = 0; j <= arrayRenglon.length - 1; j++) {
 
@@ -66,231 +151,117 @@ for (let j = 0; j <= arrayRenglon.length - 1; j++) {
     i = i + 1;
 }
 
-botonProduA.addEventListener("click", ()=> {
+// const botonProduA = document.getElementById("botonProdA");
+// const botonProduB = document.getElementById("botonProdB");
+// const botonProduC = document.getElementById("botonProdC");
+// const botonProduD = document.getElementById("botonProdD");
+// const botonFinalizar = document.getElementById("botonFinalizar");
 
-    let renglonNew = new Renglon();
-    renglonNew.nroFila = i;
-    renglonNew.cantidad = parseInt(document.getElementById("textProdA").value);
-    renglonNew.precio = 2338;
-    renglonNew.id = "CUI-4756";
-    renglonNew.descripcion = "Labial Matte Instranferible";
-    renglonNew.calcularRenglon(); //Obtiene el subtotal de la compra aplicando el IVA
-
-    //calculo el subtotal de la compra y sumo ese subtotal valorizado del carrito
-    montoCarrito = (montoCarrito + renglonNew.subtotal);
-
-    const textProduA = document.getElementById("textProdA");
-    textProduA.value = 1;
-
-    i = i + 1;
-    objetosDelCarrito = objetosDelCarrito + renglonNew.cantidad;
-
-    arrayRenglon.push (renglonNew);
-    localStorage.setItem('BD', JSON.stringify(arrayRenglon))
-    mostrarRenglonCarrito(renglonNew);
-})
-
-botonProduB.addEventListener("click", ()=> {
-
-    let renglonNew = new Renglon();
-    renglonNew.nroFila = i;
-    renglonNew.cantidad = parseInt(document.getElementById("textProdB").value);
-    renglonNew.precio = 1645;
-    renglonNew.id = "CUI-4750";
-    renglonNew.descripcion = "Iluminador Dúo Super Brillo";
-    renglonNew.calcularRenglon(); //Obtiene el subtotal de la compra aplicando el IVA
-
-    //calculo el subtotal de la compra y sumo ese subtotal valorizado del carrito
-    montoCarrito = (montoCarrito + renglonNew.subtotal);
-
-    const textProduB = document.getElementById("textProdB");
-    textProduB.value = 1;
-
-    objetosDelCarrito = objetosDelCarrito + renglonNew.cantidad;
-    i = i + 1;
-
-    arrayRenglon.push (renglonNew);
-    localStorage.setItem('BD', JSON.stringify(arrayRenglon))
-    mostrarRenglonCarrito(renglonNew);
-})
-
-botonProduC.addEventListener("click", ()=> {
-
-    let renglonNew = new Renglon();
-    renglonNew.nroFila = i;
-    renglonNew.cantidad = parseInt(document.getElementById("textProdC").value);
-    renglonNew.precio = 1120;
-    renglonNew.id = "CUI-4700";
-    renglonNew.descripcion = "Hidratante de Manos 75g";
-    renglonNew.calcularRenglon(); //Obtiene el subtotal de la compra aplicando el IVA
-
-    //calculo el subtotal de la compra y sumo ese subtotal valorizado del carrito
-    montoCarrito = (montoCarrito + renglonNew.subtotal);
-
-    const textProduC = document.getElementById("textProdC");
-    textProduC.value = 1;
-
-    objetosDelCarrito = objetosDelCarrito + renglonNew.cantidad;
-    i = i + 1;
-
-    arrayRenglon.push (renglonNew);
-    localStorage.setItem('BD', JSON.stringify(arrayRenglon))
-    mostrarRenglonCarrito(renglonNew);
-})
-
-botonProduD.addEventListener("click", ()=> {
-
-    let renglonNew = new Renglon();
-    renglonNew.nroFila = i;
-    renglonNew.cantidad = parseInt(document.getElementById("textProdD").value);
-    renglonNew.precio = 2513;
-    renglonNew.id = "PERF-4000";
-    renglonNew.descripcion = "Body Splash Cereza y Avellanas";
-    renglonNew.calcularRenglon(); //Obtiene el subtotal de la compra aplicando el IVA
-
-    //calculo el subtotal de la compra y sumo ese subtotal valorizado del carrito
-    montoCarrito = (montoCarrito + renglonNew.subtotal);
-
-    const textProduD = document.getElementById("textProdD");
-    textProduD.value = 1;
-
-    objetosDelCarrito = objetosDelCarrito + renglonNew.cantidad;
-    i = i + 1;
-
-    arrayRenglon.push (renglonNew);
-    localStorage.setItem('BD', JSON.stringify(arrayRenglon))
-    mostrarRenglonCarrito(renglonNew);
-})
-
-botonFinalizar.addEventListener("click", ()=> {
-//Aca utilizo DOM para informar que la compra a finalizado, mostrando un resumen de lo comprado
-
-    const productosHTML = document.getElementById("listadoProdu");
-    productosHTML.innerHTML = `<h2> Ud. ha comprado los siguientes productos </h2>`;
-
-        // const divContenedorRdoN = document.getElementById("divContenedorResultado");
-        // divContenedorRdoN.innerHTML = ``;
-        // arrayRenglon.forEach((renglonNew)=>{
-        //     divContenedorRdoN.innerHTML = divContenedorRdoN.innerHTML +
-        // ` <p> Nº ${renglonNew.nroFila} <br> Producto: ${renglonNew.id} <br> ${renglonNew.descripcion} ` +
-        // ` <br> Precio Unitario: $ ${renglonNew.precio} <br> Cantidad: ${renglonNew.cantidad} <br> Subtotal con IVA: ` +
-        // ` $ ${renglonNew.subtotal.toFixed(2)}<p> `;
-        // });
-
-    const divContenedorRdoN = document.getElementById("divContenedorResultado");
-    divContenedorRdoN.innerHTML = divContenedorRdoN.innerHTML + `<br> <h2> TOTAL: $ ${montoCarrito.toFixed(2)} `
-
-    const divbotonFin = document.getElementById("regionBotonFinalizar");
-    divbotonFin.innerHTML = `<p> </p> `
-})
-
-
-// if (comprar==true) { /*mientras quiera seguir comprando */
-
+// botonProduA.addEventListener("click", ()=> {
 //     let renglonNew = new Renglon();
-
-//     //obtengo todos los valores, despues los tomaré de un control o componente
-//     renglonNew.id = 1;//prompt ("Ingrese el PRODUCTO (ID) que desea comprar: (Ejemplo: AB-5003)");
-
-//     //obtengo el precio del html seleccionado
-//     renglonNew.precio = 600; //valorProducto.toFixed(2); //asigno el valor a la propiedad recien cdo me asegure que es un valor correcto
-
-//     renglonNew.cantidad = 3; //lo obtengo del textbox, implementar
-
-//     cantidad = cantidad + 1; /*al ingresar un producto al carrito incremento el contador de productos */
-
-//     renglonNew.calcularRenglon(); //Obtiene el subtotal de la compra aplicando el IVA
-
 //     renglonNew.nroFila = i;
+//     renglonNew.cantidad = parseInt(document.getElementById("textProdA").value);
+//     renglonNew.precio = 2338;
+//     renglonNew.id = "CUI-4756";
+//     renglonNew.descripcion = "Labial Matte Instranferible";
+//     renglonNew.calcularRenglon(); //Obtiene el subtotal de la compra aplicando el IVA
 
 //     //calculo el subtotal de la compra y sumo ese subtotal valorizado del carrito
 //     montoCarrito = (montoCarrito + renglonNew.subtotal);
 
+//     const textProduA = document.getElementById("textProdA");
+//     textProduA.value = 1;
+
+//     i = i + 1;
+//     objetosDelCarrito = objetosDelCarrito + renglonNew.cantidad;
+
 //     arrayRenglon.push (renglonNew);
+//     localStorage.setItem('BD', JSON.stringify(arrayRenglon))
+//     mostrarRenglonCarrito(renglonNew);
+// })
+
+// botonProduB.addEventListener("click", ()=> {
+
+//     let renglonNew = new Renglon();
+//     renglonNew.nroFila = i;
+//     renglonNew.cantidad = parseInt(document.getElementById("textProdB").value);
+//     renglonNew.precio = 1645;
+//     renglonNew.id = "CUI-4750";
+//     renglonNew.descripcion = "Iluminador Dúo Super Brillo";
+//     renglonNew.calcularRenglon(); //Obtiene el subtotal de la compra aplicando el IVA
+
+//     //calculo el subtotal de la compra y sumo ese subtotal valorizado del carrito
+//     montoCarrito = (montoCarrito + renglonNew.subtotal);
+
+//     const textProduB = document.getElementById("textProdB");
+//     textProduB.value = 1;
+
+//     objetosDelCarrito = objetosDelCarrito + renglonNew.cantidad;
 //     i = i + 1;
 
-//     //Muestro el renglon completo del carrito de compras, como si fuera el registro de una factura
-//     //console.log("ID:(" + renglonNew.id + ")-Descripcion Producto " + cantidad + "-Cantidad:" + renglonNew.cantidad + "-Precio Producto:$" + renglonNew.precio);
-//     //ACA TENGO QUE HACER UNA FUNCION PARA AGREGAR UN RENGLON EN EL HTML CON EL NUEVO PRODUCTO DEL CARRITO
+//     arrayRenglon.push (renglonNew);
+//     localStorage.setItem('BD', JSON.stringify(arrayRenglon))
+//     mostrarRenglonCarrito(renglonNew);
+// })
 
-// } else {
+// botonProduC.addEventListener("click", ()=> {
 
-//     //informo el subtotal de la compra hasta el momento, despues lo mostraría en un componente
-//     alert("Hasta ahora el monto de su carrito de compras es $" + montoCarrito.toFixed(2));
+//     let renglonNew = new Renglon();
+//     renglonNew.nroFila = i;
+//     renglonNew.cantidad = parseInt(document.getElementById("textProdC").value);
+//     renglonNew.precio = 1120;
+//     renglonNew.id = "CUI-4700";
+//     renglonNew.descripcion = "Hidratante de Manos 75g";
+//     renglonNew.calcularRenglon(); //Obtiene el subtotal de la compra aplicando el IVA
 
-//     //pregunto si quiero seguir comprando
-//     opcion = prompt ("Desea seguir comprando? (S/N)");
+//     //calculo el subtotal de la compra y sumo ese subtotal valorizado del carrito
+//     montoCarrito = (montoCarrito + renglonNew.subtotal);
 
-//     switch (opcion){
-//         case "S":
-//             comprar = true;
-//             break;
+//     const textProduC = document.getElementById("textProdC");
+//     textProduC.value = 1;
 
-//         case "s":
-//             comprar = true;
-//             break;
+//     objetosDelCarrito = objetosDelCarrito + renglonNew.cantidad;
+//     i = i + 1;
 
-//         case "N":
-//             comprar = false; /*e informa el monto de la compra total */
-//             alert("Ud. compró " + cantidad + " producto/s por un valor total de $" + montoCarrito.toFixed(2) + "\n");
-//             console.log(arrayRenglon);
+//     arrayRenglon.push (renglonNew);
+//     localStorage.setItem('BD', JSON.stringify(arrayRenglon))
+//     mostrarRenglonCarrito(renglonNew);
+// })
 
-//             //Uso Funciones de Orden Superior para recorrer el arreglo/carrito para mostrarselo al usuario
-//             arrayRenglon.forEach((renglonNew)=>{
-//                 alert("Nº " + renglonNew.nroFila + "\n" +
-//                 "Producto: " + renglonNew.id + "\n" +
-//                 "Precio Unitario: $" + renglonNew.precio + "\n" +
-//                 "Cantidad: " + renglonNew.cantidad + "\n" +
-//                 "Subtotal con IVA: $" + renglonNew.subtotal.toFixed(2));
-//             });
+// botonProduD.addEventListener("click", ()=> {
 
-//             //Aca utilizo DOM para informar que la compra a finalizado, mostrando un resumen de lo comprado
-//             const tituloPrincipalHTML = document.getElementById("tituloPrincipal");
-//             tituloPrincipalHTML.innerText = "GRACIAS POR SU COMPRA";
+//     let renglonNew = new Renglon();
+//     renglonNew.nroFila = i;
+//     renglonNew.cantidad = parseInt(document.getElementById("textProdD").value);
+//     renglonNew.precio = 2513;
+//     renglonNew.id = "PERF-4000";
+//     renglonNew.descripcion = "Body Splash Cereza y Avellanas";
+//     renglonNew.calcularRenglon(); //Obtiene el subtotal de la compra aplicando el IVA
 
-//             const divContenedorRdoN = document.getElementById("divContenedorResultado");
-//             arrayRenglon.forEach((renglonNew)=>{
-//                 divContenedorRdoN.innerHTML = divContenedorRdoN.innerHTML +
-//                 ` <p> Nº ${renglonNew.nroFila} <br> Producto: ${renglonNew.id} <br> Precio Unitario: $ ${renglonNew.precio} <br> Cantidad: ${renglonNew.cantidad} <br> Subtotal con IVA: $ ${renglonNew.subtotal.toFixed(2)}<p> `
-//             });
+//     //calculo el subtotal de la compra y sumo ese subtotal valorizado del carrito
+//     montoCarrito = (montoCarrito + renglonNew.subtotal);
 
-//             break;
+//     const textProduD = document.getElementById("textProdD");
+//     textProduD.value = 1;
 
-//         case "n":
-//             comprar = false; /*e informa el monto de la compra total */
-//             alert("Ud. compró " + cantidad + " producto/s por un valor total de $" + montoCarrito.toFixed(2) + "\n");
-//             console.log(arrayRenglon);
+//     objetosDelCarrito = objetosDelCarrito + renglonNew.cantidad;
+//     i = i + 1;
 
-//             //Uso Funciones de Orden Superior para recorrer el arreglo/carrito para mostrarselo al usuario
-//             arrayRenglon.forEach((renglonNew)=>{
-//                 alert("Nº " + renglonNew.nroFila + "\n" +
-//                 "Producto: " + renglonNew.id + "\n" +
-//                 "Precio Unitario: $" + renglonNew.precio + "\n" +
-//                 "Cantidad: " + renglonNew.cantidad + "\n" +
-//                 "Subtotal con IVA: $" + renglonNew.subtotal.toFixed(2));
-//             });
+//     arrayRenglon.push (renglonNew);
+//     localStorage.setItem('BD', JSON.stringify(arrayRenglon))
+//     mostrarRenglonCarrito(renglonNew);
+// })
 
-//             //Aca utilizo DOM para informar que la compra a finalizado, mostrando un resumen de lo comprado
-//             const tituloPrincipalHTMLn = document.getElementById("tituloPrincipal");
-//             tituloPrincipalHTMLn.innerText = "GRACIAS POR SU COMPRA";
+botonFinalizar.addEventListener("click", ()=> {
+//Aca utilizo DOM para informar que la compra a finalizado, mostrando un resumen de lo comprado
+const productosHTML = document.getElementById("listadoProdu");
+productosHTML.innerHTML = `<h2> Ud. ha comprado los siguientes productos </h2>`;
 
-//             const divContenedorRdon = document.getElementById("divContenedorResultado");
+const divContenedorRdoN = document.getElementById("divContenedorResultado");
+divContenedorRdoN.innerHTML = divContenedorRdoN.innerHTML + `<br> <h2> TOTAL: $ ${montoCarrito.toFixed(2)} `
 
-//             arrayRenglon.forEach((renglonNew)=>{
-//                 divContenedorRdon.innerHTML = divContenedorRdon.innerHTML +
-//                 ` <p> Nº ${renglonNew.nroFila} <br> Producto: ${renglonNew.id} <br> Precio Unitario: $ ${renglonNew.precio} <br> Cantidad: ${renglonNew.cantidad} <br> Subtotal con IVA: $ ${renglonNew.subtotal.toFixed(2)}<p> `
-//             });
+const divbotonFin = document.getElementById("regionBotonFinalizar");
+divbotonFin.innerHTML = `<p> </p> `
+})
 
-//             break;
-
-//         default:
-//             do { opcion = prompt ("Ha ingresado una opción inválida. Desea seguir comprando? (S/N)");
-//             } while (opcion != "S" && opcion != "s" && opcion != "N" && opcion != "n");
-//             if (opcion=="S" || opcion == "s") {
-//                 comprar = true;
-//             } else {
-//                 comprar= false;
-//             }
-//     }
-
-//}
+crearCards ();
