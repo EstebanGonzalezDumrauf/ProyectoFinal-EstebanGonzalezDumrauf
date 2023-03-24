@@ -97,17 +97,23 @@ function agregarAlCarrito (prod){
         const textProdu = document.getElementById("textProd" + prod.id);
         textProdu.value = 1;
     
-        i = i + 1;
+        i++; // i = i + 1;
+    
         objetosDelCarrito = objetosDelCarrito + renglonNew.cantidad;
     
         arrayRenglon.push (renglonNew);
         localStorage.setItem('BD', JSON.stringify(arrayRenglon))
         mostrarRenglonCarrito(renglonNew);
     } else {
-///////////////////////////////////PENDIENTEEEEEEEEEEEEEEEEEE VIDEO MINUTO 44:00 ///////////////////////////
-    }
+        let myProdu = arrayRenglon.find((element)=> element.id === prod.id);
 
-    renglonNew.cantidad = parseInt(document.getElementById("textProd" + prod.id).value);
+        arrayRenglon[myProdu.nroFila - 1].cantidad += parseInt(document.getElementById("textProd" + myProdu.id).value);
+
+        console.log(arrayRenglon[myProdu.nroFila - 1]);
+
+        localStorage.setItem('BD', JSON.stringify(arrayRenglon))
+        refreshRenglonesCarrito(arrayRenglon);
+    }
 
 }
 //****************************************************nuevo metodologiaaaaaaaaaaaaaaaaaa */
@@ -122,7 +128,26 @@ function mostrarRenglonCarrito(renglon) {
 
     cuerpoDelCarrito.innerHTML = cuerpoDelCarrito.innerHTML + `<tr> <th scope="row">${renglon.nroFila}</th> <td>${renglon.id}</td>` +
     `<td>${renglon.descripcion}</td> <td>$${renglon.precio}</td> <td>${renglon.cantidad}</td> <td>$${renglon.subtotal.toFixed(2)}</td> </tr>`
+}
 
+function refreshRenglonesCarrito(carrito){
+    const cantidadEnCarrito = document.getElementById("cantidadProdu");
+
+    cantidadEnCarrito.innerHTML = objetosDelCarrito;
+
+    objetosDelCarrito = 0;
+
+    const cuerpoDelCarrito = document.getElementById("bodyDelCarrito");
+
+    cuerpoDelCarrito.innerHTML = ``;
+
+    carrito.forEach(element => {
+        objetosDelCarrito += element.cantidad;
+
+        montoCarrito += element.subtotal;
+
+        mostrarRenglonCarrito(element);
+    });
 }
 
 class Renglon {
@@ -149,8 +174,22 @@ for (let j = 0; j <= arrayRenglon.length - 1; j++) {
 
     mostrarRenglonCarrito(arrayRenglon[j]);
 
-    i = i + 1;
+    i++; 
 }
+
+botonFinalizar.addEventListener("click", ()=> {
+//Aca utilizo DOM para informar que la compra a finalizado, mostrando un resumen de lo comprado
+const productosHTML = document.getElementById("listadoProdu");
+productosHTML.innerHTML = `<h2> Ud. ha comprado los siguientes productos </h2>`;
+
+const divContenedorRdoN = document.getElementById("divContenedorResultado");
+divContenedorRdoN.innerHTML = divContenedorRdoN.innerHTML + `<br> <h2> TOTAL: $ ${montoCarrito.toFixed(2)} `
+
+const divbotonFin = document.getElementById("regionBotonFinalizar");
+divbotonFin.innerHTML = `<p> </p> `
+})
+
+crearCards ();
 
 // const botonProduA = document.getElementById("botonProdA");
 // const botonProduB = document.getElementById("botonProdB");
@@ -252,17 +291,3 @@ for (let j = 0; j <= arrayRenglon.length - 1; j++) {
 //     localStorage.setItem('BD', JSON.stringify(arrayRenglon))
 //     mostrarRenglonCarrito(renglonNew);
 // })
-
-botonFinalizar.addEventListener("click", ()=> {
-//Aca utilizo DOM para informar que la compra a finalizado, mostrando un resumen de lo comprado
-const productosHTML = document.getElementById("listadoProdu");
-productosHTML.innerHTML = `<h2> Ud. ha comprado los siguientes productos </h2>`;
-
-const divContenedorRdoN = document.getElementById("divContenedorResultado");
-divContenedorRdoN.innerHTML = divContenedorRdoN.innerHTML + `<br> <h2> TOTAL: $ ${montoCarrito.toFixed(2)} `
-
-const divbotonFin = document.getElementById("regionBotonFinalizar");
-divbotonFin.innerHTML = `<p> </p> `
-})
-
-crearCards ();
