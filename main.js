@@ -11,7 +11,7 @@ let objetosDelCarrito = 0;
 let arrayRenglon = [];
 const iva = 1.21; /*defino al IVA como constante */
 
-//****************************************************nuevo metodologiaaaaaaaaaaaaaaaaaa */
+// -------------------- LISTADO DE PRODUCTOS DEL CARRITO -----------------------------------------------------------
 let productos = [
     {
         id: 'AB-5001',
@@ -109,14 +109,17 @@ function agregarAlCarrito (prod){
 
         arrayRenglon[myProdu.nroFila - 1].cantidad += parseInt(document.getElementById("textProd" + myProdu.id).value);
 
-        console.log(arrayRenglon[myProdu.nroFila - 1]);
+        arrayRenglon[myProdu.nroFila - 1].subtotal = (arrayRenglon[myProdu.nroFila - 1].precio * arrayRenglon[myProdu.nroFila - 1].cantidad) *iva;
+
+        const textProdu = document.getElementById("textProd" + prod.id);
+        console.log(textProdu);
+        textProdu.value = 1;
 
         localStorage.setItem('BD', JSON.stringify(arrayRenglon))
         refreshRenglonesCarrito(arrayRenglon);
     }
 
 }
-//****************************************************nuevo metodologiaaaaaaaaaaaaaaaaaa */
 
 function mostrarRenglonCarrito(renglon) {
     
@@ -143,6 +146,8 @@ function refreshRenglonesCarrito(carrito){
 
     carrito.forEach(element => {
         objetosDelCarrito += element.cantidad;
+
+        //element.calcularRenglon(); //Obtiene el subtotal de la compra aplicando el IVA
 
         montoCarrito += element.subtotal;
 
@@ -190,104 +195,3 @@ divbotonFin.innerHTML = `<p> </p> `
 })
 
 crearCards ();
-
-// const botonProduA = document.getElementById("botonProdA");
-// const botonProduB = document.getElementById("botonProdB");
-// const botonProduC = document.getElementById("botonProdC");
-// const botonProduD = document.getElementById("botonProdD");
-// const botonFinalizar = document.getElementById("botonFinalizar");
-
-// botonProduA.addEventListener("click", ()=> {
-//     let renglonNew = new Renglon();
-//     renglonNew.nroFila = i;
-//     renglonNew.cantidad = parseInt(document.getElementById("textProdA").value);
-//     renglonNew.precio = 2338;
-//     renglonNew.id = "CUI-4756";
-//     renglonNew.descripcion = "Labial Matte Instranferible";
-//     renglonNew.calcularRenglon(); //Obtiene el subtotal de la compra aplicando el IVA
-
-//     //calculo el subtotal de la compra y sumo ese subtotal valorizado del carrito
-//     montoCarrito = (montoCarrito + renglonNew.subtotal);
-
-//     const textProduA = document.getElementById("textProdA");
-//     textProduA.value = 1;
-
-//     i = i + 1;
-//     objetosDelCarrito = objetosDelCarrito + renglonNew.cantidad;
-
-//     arrayRenglon.push (renglonNew);
-//     localStorage.setItem('BD', JSON.stringify(arrayRenglon))
-//     mostrarRenglonCarrito(renglonNew);
-// })
-
-// botonProduB.addEventListener("click", ()=> {
-
-//     let renglonNew = new Renglon();
-//     renglonNew.nroFila = i;
-//     renglonNew.cantidad = parseInt(document.getElementById("textProdB").value);
-//     renglonNew.precio = 1645;
-//     renglonNew.id = "CUI-4750";
-//     renglonNew.descripcion = "Iluminador Dúo Super Brillo";
-//     renglonNew.calcularRenglon(); //Obtiene el subtotal de la compra aplicando el IVA
-
-//     //calculo el subtotal de la compra y sumo ese subtotal valorizado del carrito
-//     montoCarrito = (montoCarrito + renglonNew.subtotal);
-
-//     const textProduB = document.getElementById("textProdB");
-//     textProduB.value = 1;
-
-//     objetosDelCarrito = objetosDelCarrito + renglonNew.cantidad;
-//     i = i + 1;
-
-//     arrayRenglon.push (renglonNew);
-//     localStorage.setItem('BD', JSON.stringify(arrayRenglon))
-//     mostrarRenglonCarrito(renglonNew);
-// })
-
-// botonProduC.addEventListener("click", ()=> {
-
-//     let renglonNew = new Renglon();
-//     renglonNew.nroFila = i;
-//     renglonNew.cantidad = parseInt(document.getElementById("textProdC").value);
-//     renglonNew.precio = 1120;
-//     renglonNew.id = "CUI-4700";
-//     renglonNew.descripcion = "Hidratante de Manos 75g";
-//     renglonNew.calcularRenglon(); //Obtiene el subtotal de la compra aplicando el IVA
-
-//     //calculo el subtotal de la compra y sumo ese subtotal valorizado del carrito
-//     montoCarrito = (montoCarrito + renglonNew.subtotal);
-
-//     const textProduC = document.getElementById("textProdC");
-//     textProduC.value = 1;
-
-//     objetosDelCarrito = objetosDelCarrito + renglonNew.cantidad;
-//     i = i + 1;
-
-//     arrayRenglon.push (renglonNew);
-//     localStorage.setItem('BD', JSON.stringify(arrayRenglon))
-//     mostrarRenglonCarrito(renglonNew);
-// })
-
-// botonProduD.addEventListener("click", ()=> {
-
-//     let renglonNew = new Renglon();
-//     renglonNew.nroFila = i;
-//     renglonNew.cantidad = parseInt(document.getElementById("textProdD").value);
-//     renglonNew.precio = 2513;
-//     renglonNew.id = "PERF-4000";
-//     renglonNew.descripcion = "Body Splash Cereza y Avellanas";
-//     renglonNew.calcularRenglon(); //Obtiene el subtotal de la compra aplicando el IVA
-
-//     //calculo el subtotal de la compra y sumo ese subtotal valorizado del carrito
-//     montoCarrito = (montoCarrito + renglonNew.subtotal);
-
-//     const textProduD = document.getElementById("textProdD");
-//     textProduD.value = 1;
-
-//     objetosDelCarrito = objetosDelCarrito + renglonNew.cantidad;
-//     i = i + 1;
-
-//     arrayRenglon.push (renglonNew);
-//     localStorage.setItem('BD', JSON.stringify(arrayRenglon))
-//     mostrarRenglonCarrito(renglonNew);
-// })
