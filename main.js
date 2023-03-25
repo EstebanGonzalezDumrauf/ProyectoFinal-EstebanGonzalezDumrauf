@@ -129,8 +129,11 @@ function mostrarRenglonCarrito(renglon) {
 
     const cuerpoDelCarrito = document.getElementById("bodyDelCarrito");
 
-    cuerpoDelCarrito.innerHTML = cuerpoDelCarrito.innerHTML + `<tr> <th scope="row">${renglon.nroFila}</th> <td>${renglon.id}</td>` +
-    `<td>${renglon.descripcion}</td> <td>$${renglon.precio}</td> <td>${renglon.cantidad}</td> <td>$${renglon.subtotal.toFixed(2)}</td> </tr>`
+    cuerpoDelCarrito.innerHTML = cuerpoDelCarrito.innerHTML + `<tr> <th scope="row" style="width: 20px;">${renglon.nroFila}</th> <td style="width: 100px;">${renglon.id}</td>` +
+    `<td>${renglon.descripcion}</td> <td>$${renglon.precio}</td> <td style="width: 10px;"><input value=${renglon.cantidad} id="cant${renglon.id}" ` + 
+    `disabled style="margin-bottom: 15px; width: 50px;"></input></td> <td>$${renglon.subtotal.toFixed(2)}</td> ` +
+    `<td style="width: 50px;"><a id="botonMod${renglon.id}" class="btn btn-warning">Modificar</a></td> ` +
+    `<td style="width: 50px;"> <a id="botonElim${renglon.id}" class="btn btn-danger">Eliminar</a></td></tr>`;
 }
 
 function refreshRenglonesCarrito(carrito){
