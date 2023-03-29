@@ -77,6 +77,45 @@ function darFuncionalidadCarrito (){
     })
 }
 
+function modificarRenglonCarrito (nroFila){
+    console.log(nroFila);
+    console.log(arrayRenglon[nroFila - 1]);
+}
+
+function eliminarRenglonCarrito (nroFila){
+
+    montoCarrito = 0;
+
+    arrayRenglon.splice(nroFila - 1, 1);
+    console.log(arrayRenglon);
+
+    const cantidadEnCarrito = document.getElementById("cantidadProdu");
+
+    cantidadEnCarrito.innerHTML = objetosDelCarrito;
+
+    objetosDelCarrito = 0;
+
+    const cuerpoDelCarrito = document.getElementById("bodyDelCarrito");
+
+    cuerpoDelCarrito.innerHTML = ``;
+
+    let numeroFila = 1;
+
+    arrayRenglon.forEach(element => {
+
+        element.nroFila = numeroFila;
+        numeroFila++;
+
+        objetosDelCarrito += element.cantidad;
+
+        montoCarrito += element.subtotal;
+
+        mostrarRenglonCarrito(element);
+    });
+
+    localStorage.setItem('BD', JSON.stringify(arrayRenglon))
+}
+
 function agregarAlCarrito (prod){
     let renglonNew = new Renglon();
     renglonNew.nroFila = i;
@@ -132,8 +171,9 @@ function mostrarRenglonCarrito(renglon) {
     cuerpoDelCarrito.innerHTML = cuerpoDelCarrito.innerHTML + `<tr> <th scope="row" style="width: 20px;">${renglon.nroFila}</th> <td style="width: 100px;">${renglon.id}</td>` +
     `<td>${renglon.descripcion}</td> <td>$${renglon.precio}</td> <td style="width: 10px;"><input value=${renglon.cantidad} id="cant${renglon.id}" ` + 
     `disabled style="margin-bottom: 15px; width: 50px;"></input></td> <td>$${renglon.subtotal.toFixed(2)}</td> ` +
-    `<td style="width: 50px;"><a id="botonMod${renglon.id}" class="btn btn-warning">Modificar</a></td> ` +
-    `<td style="width: 50px;"> <a id="botonElim${renglon.id}" class="btn btn-danger">Eliminar</a></td></tr>`;
+    `<td style="width: 50px;"><a id="botonMod${renglon.id}" class="btn btn-warning" onclick="modificarRenglonCarrito(${renglon.nroFila});">Modificar</a></td> ` +
+    `<td style="width: 50px;"> <a id="botonElim${renglon.id}" class="btn btn-danger" onclick="eliminarRenglonCarrito(${renglon.nroFila});">Eliminar</a></td></tr>`;
+
 }
 
 function refreshRenglonesCarrito(carrito){
@@ -155,6 +195,7 @@ function refreshRenglonesCarrito(carrito){
         montoCarrito += element.subtotal;
 
         mostrarRenglonCarrito(element);
+        //darFuncionalidadATabla(element)
     });
 }
 
