@@ -94,28 +94,76 @@ function darFuncionalidadCarrito (){
     })
 }
 
-function modificarRenglonCarrito (nroFila){
+// function modificarRenglonCarrito (nroFila){
 
-    let cantidadLinea = document.getElementById("cant" + nroFila).disabled = false;
-    const botonModi = document.getElementById("botonMod" + nroFila);
-    console.log(botonModi.text);
+//     let cantidadLinea = document.getElementById("cant" + nroFila).disabled = false;
+//     const botonModi = document.getElementById("botonMod" + nroFila);
+//     console.log(botonModi.text);
 
-    if (botonModi.text=="Modificar"){
-        botonModi.innerHTML = `<a id="botonMod${nroFila}" class="btn btn-success";">Aceptar</a>`;//"Aceptar";
-        botonModi.class = "btn-success";
-    } else {
-        botonModi.innerHTML = "Modificar";
-        botonModi.innerHTML = `<a id="botonMod${nroFila}" class="btn btn-warning";">Modificar</a>`;//"Aceptar";
-        cantidadLinea = document.getElementById("cant" + nroFila).disabled = true;
-    }    
+//     if (botonModi.text=="Modificar"){
+//         botonModi.innerHTML = `<a id="botonMod${nroFila}" class="btn btn-success";">Aceptar</a>`;//"Aceptar";
+//         botonModi.class = "btn-success";
+
+//     } else {
+//         botonModi.innerHTML = "Modificar";
+//         botonModi.innerHTML = `<a id="botonMod${nroFila}" class="btn btn-warning";">Modificar</a>`;//"Aceptar";
+//         cantidadLinea = document.getElementById("cant" + nroFila).disabled = true;
+//     }    
+// }
+
+function sumarElementoAlCarrito (nroFila){
+    arrayRenglon[nroFila - 1].cantidad++;
+
+    const cantidadEnCarrito = document.getElementById("cantidadProdu");
+    objetosDelCarrito++;
+    cantidadEnCarrito.innerHTML = objetosDelCarrito;
+
+    const cantidadDelRenglon = document.getElementById("cant" + nroFila);
+    cantidadDelRenglon.value = arrayRenglon[nroFila - 1].cantidad;
+
+    arrayRenglon[nroFila - 1].subtotal = (arrayRenglon[nroFila - 1].precio * arrayRenglon[nroFila - 1].cantidad) *iva;
+
+    montoCarrito = (montoCarrito + (arrayRenglon[nroFila - 1].precio * iva));
+
+
+    const textSub = document.getElementById("sub" + nroFila);
+    textSub.innerHTML = "$" + arrayRenglon[nroFila - 1].subtotal.toFixed(2);
+
+    localStorage.setItem('BD', JSON.stringify(arrayRenglon))
 }
+
+function restarElementoAlCarrito (nroFila){
+
+    if (arrayRenglon[nroFila - 1].cantidad > 1) {
+        arrayRenglon[nroFila - 1].cantidad--;
+
+        const cantidadEnCarrito = document.getElementById("cantidadProdu");
+        objetosDelCarrito--;
+        cantidadEnCarrito.innerHTML = objetosDelCarrito;
+    
+        const cantidadDelRenglon = document.getElementById("cant" + nroFila);
+        cantidadDelRenglon.value = arrayRenglon[nroFila - 1].cantidad;
+
+        arrayRenglon[nroFila - 1].subtotal = (arrayRenglon[nroFila - 1].precio * arrayRenglon[nroFila - 1].cantidad) *iva;
+
+        montoCarrito = (montoCarrito - (arrayRenglon[nroFila - 1].precio * iva));
+    
+        console.log(arrayRenglon[nroFila - 1].subtotal);
+        const textSub = document.getElementById("sub" + nroFila);
+        textSub.innerHTML = "$" + arrayRenglon[nroFila - 1].subtotal.toFixed(2);
+    
+        localStorage.setItem('BD', JSON.stringify(arrayRenglon))
+    }
+
+}
+
 
 function eliminarRenglonCarrito (nroFila){
 
     montoCarrito = 0;
 
     arrayRenglon.splice(nroFila - 1, 1);
-    console.log(arrayRenglon);
+    //console.log(arrayRenglon);
 
     const cantidadEnCarrito = document.getElementById("cantidadProdu");
 
@@ -206,15 +254,17 @@ function mostrarRenglonCarrito(renglon) {
 
         cuerpoDelCarrito.innerHTML = `<tr> <th scope="row" style="width: 20px;">${fila}</th> <td style="width: 100px;">${renglon.id}</td>` +
         `<td>${renglon.descripcion}</td> <td>$${renglon.precio}</td> <td style="width: 10px;"><input value=${renglon.cantidad} id="cant${fila}" ` + 
-        `disabled style="margin-bottom: 15px; width: 50px;"></input></td> <td>$${renglon.subtotal.toFixed(2)}</td> ` +
-        `<td style="width: 50px;"><a id="botonMod${fila}" class="btn btn-warning" onclick="modificarRenglonCarrito(${fila});">Modificar</a></td> ` +
+        `disabled style="margin-bottom: 15px; width: 50px;"></input></td> <td id="sub${fila}">$${renglon.subtotal.toFixed(2)}</td> ` +
+        `<td style="width: 50px;"><a id="botonModMas${fila}" class="btn btn-warning" onclick="sumarElementoAlCarrito(${fila});">+</a></td> ` +
+        `<td style="width: 50px;"><a id="botonModMenos${fila}" class="btn btn-warning" onclick="restarElementoAlCarrito(${fila});">-</a></td> ` +
         `<td style="width: 50px;"> <a id="botonElim${fila}" class="btn btn-danger" onclick="eliminarRenglonCarrito(${fila});">Eliminar</a></td></tr>`;
         final = true;
     } else {
         cuerpoDelCarrito.innerHTML = cuerpoDelCarrito.innerHTML + `<tr> <th scope="row" style="width: 20px;">${fila}</th> <td style="width: 100px;">${renglon.id}</td>` +
         `<td>${renglon.descripcion}</td> <td>$${renglon.precio}</td> <td style="width: 10px;"><input value=${renglon.cantidad} id="cant${fila}" ` + 
-        `disabled style="margin-bottom: 15px; width: 50px;"></input></td> <td>$${renglon.subtotal.toFixed(2)}</td> ` +
-        `<td style="width: 50px;"><a id="botonMod${fila}" class="btn btn-warning" onclick="modificarRenglonCarrito(${fila});">Modificar</a></td> ` +
+        `disabled style="margin-bottom: 15px; width: 50px;"></input></td> <td id="sub${fila}">$${renglon.subtotal.toFixed(2)}</td> ` +
+        `<td style="width: 50px;"><a id="botonModMas${fila}" class="btn btn-warning" onclick="sumarElementoAlCarrito(${fila});">+</a></td> ` +
+        `<td style="width: 50px;"><a id="botonModMenos${fila}" class="btn btn-warning" onclick="restarElementoAlCarrito(${fila});">-</a></td> ` +
         `<td style="width: 50px;"> <a id="botonElim${fila}" class="btn btn-danger" onclick="eliminarRenglonCarrito(${fila});">Eliminar</a></td></tr>`;
 
     }
