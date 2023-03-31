@@ -28,40 +28,11 @@ class Renglon {
     }
 }
 
-// -------------------- LISTADO DE PRODUCTOS DEL CARRITO -----------------------------------------------------------
-let productos = [
-    {
-        id: 'AB-5001',
-        descripcion: 'Labial Matte Instranferible',
-        precio: 3338,
-        img: './img/productos/belleza/bell3.jpeg'
-    },
-
-    {
-        id: 'AC-5005',
-        descripcion: 'Iluminador Dúo Super Brillo',
-        precio: 2645,
-        img: './img/productos/belleza/bell1.jpeg'
-    },
-
-    {
-        id: 'DB-7110',
-        descripcion: 'Hidratante de Manos 75g',
-        precio: 1120,
-        img: './img/productos/cuidados/cui1.jpeg'
-    }, 
-
-    {
-        id: 'CT-2350',
-        descripcion: 'Body Splash Cereza',
-        precio: 3513,
-        img: './img/productos/perfumeria/perf5.jpeg'
-    }
-]
-
 let main = document.getElementById("bolsaProductos");
 
 function crearCards (){
+    let productos = cargarProductosLS();
+
     productos.forEach(prod=>{
         main.innerHTML += ` <div class="col-lg-3 col-md-6 col-sm-12">
                 <div class="card justify-content-center align-items-center" style="width: 18rem; margin: auto auto; align-items: center; margin-bottom: 15px; " >
