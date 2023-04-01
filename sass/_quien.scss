@@ -1,0 +1,102 @@
+.quien {
+    margin: 10px 37px 5px 37px;
+    padding: 0px;
+    border: 2px solid grey;
+    border-radius: 3%;
+}
+
+/* Flex correspondiente a los sectores de las descripciones de quien.html */
+.flex__soyyo {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: stretch;
+    align-items: center;
+    border: 2px solid orangered;
+    text-align: center;
+    padding-top: 15px;
+    padding-bottom: 5px;
+    margin-bottom: 50px;
+    padding-right: 50px;
+    padding-left: 50px;
+    background-color: blanchedalmond;
+
+    @media (min-width:1024px) {
+        display: flex;
+        justify-content: center;
+        align-content: stretch;
+        align-items: center;
+        border: 2px solid orangered;
+        text-align: center;
+        padding-top: 0px;
+        margin-bottom: 50px;
+        padding-right: 50px;
+        padding-left: 50px;
+        background-color: blanchedalmond;
+        flex-wrap: nowrap;
+    }
+}
+
+/* Flex correspondiente al sector de presentacion de prodcutos de las descripciones de quien.html */
+.flex__presenta {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: stretch;
+    align-items: center;
+    border: 2px solid orangered;
+    text-align: center;
+    margin-bottom: 50px;
+    padding-top: 15px;
+    padding-bottom: 5px;
+    padding-right: 10px;
+    padding-left: 10px;
+    background-color: blanchedalmond;
+
+    @media (min-width:1024px) {
+        display: flex;
+        justify-content: center;
+        align-content: stretch;
+        align-items: center;
+        border: 2px solid orangered;
+        text-align: center;
+        margin-bottom: 50px;
+        padding-top: 0px;
+        padding-right: 10px;
+        padding-left: 10px;
+        background-color: blanchedalmond;
+        flex-wrap: nowrap;
+    }
+}
+
+/* Flex correspondiente al sector capacitacion de las descripciones de quien.html */
+.flex__capa {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: stretch;
+    align-items: center;
+    border: 2px solid orangered;
+    text-align: center;
+    margin-bottom: 50px;
+    padding-top: 15px;
+    padding-bottom: 5px;
+    padding-right: 10px;
+    padding-left: 10px;
+    background-color: blanchedalmond;
+
+    @media (min-width:1024px) {
+        display: flex;
+        justify-content: center;
+        align-content: stretch;
+        align-items: center;
+        border: 2px solid orangered;
+        text-align: center;
+        margin-bottom: 50px;
+        padding-top: 0px;
+        padding-right: 10px;
+        padding-left: 10px;
+        background-color: blanchedalmond;
+        flex-wrap: nowrap;
+    }
+}

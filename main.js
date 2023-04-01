@@ -40,16 +40,13 @@ function crearCards (){
                         <img class= "produ" src="${prod.img}" alt="Producto mas vendido" width="250" height="250"/>
                     </div>
                     <div class="card-body text-center">
-                        <div>
-                            <img src="img/pie/1er.png" alt="Logo de Medalla de Oro" width="40" height="40"/>
-                        </div> 
                         <h5 class="card-title">${prod.descripcion}</h5>
                         <h2 class="card-text">$ ${prod.precio}</h2>
                         <div>
                             <label for="">Cantidad:</label>
                             <input type="text" value= 1 id="textProd${prod.id}" style="margin-bottom: 15px; width: 50px; ">
                         </div>
-                        <a id="botonProd${prod.id}" class="btn btn-primary">Comprar</a>
+                        <a id="botonProd${prod.id}" class="btn btn-primary">Agregar (+)</a>
                     </div>
                 </div>
             </div> `
@@ -64,23 +61,6 @@ function darFuncionalidadCarrito (){
         })
     })
 }
-
-// function modificarRenglonCarrito (nroFila){
-
-//     let cantidadLinea = document.getElementById("cant" + nroFila).disabled = false;
-//     const botonModi = document.getElementById("botonMod" + nroFila);
-//     console.log(botonModi.text);
-
-//     if (botonModi.text=="Modificar"){
-//         botonModi.innerHTML = `<a id="botonMod${nroFila}" class="btn btn-success";">Aceptar</a>`;//"Aceptar";
-//         botonModi.class = "btn-success";
-
-//     } else {
-//         botonModi.innerHTML = "Modificar";
-//         botonModi.innerHTML = `<a id="botonMod${nroFila}" class="btn btn-warning";">Modificar</a>`;//"Aceptar";
-//         cantidadLinea = document.getElementById("cant" + nroFila).disabled = true;
-//     }    
-// }
 
 function sumarElementoAlCarrito (nroFila){
     arrayRenglon[nroFila - 1].cantidad++;

@@ -26,6 +26,34 @@ const productos = [
         descripcion: 'Body Splash Cereza',
         precio: 3513,
         img: './img/productos/perfumeria/perf5.jpeg'
+    },
+
+    {
+        id: 'AT-6450',
+        descripcion: 'PRODUX1',
+        precio: 9999,
+        img: './img/productos/cuidados/cui4.jpeg'
+    },
+
+    {
+        id: 'CC-1002',
+        descripcion: 'PRODUX2',
+        precio: 8888,
+        img: './img/productos/perfumeria/perf2.jpeg'
+    },
+
+    {
+        id: 'DD-6110',
+        descripcion: 'PRODUX3',
+        precio: 1120,
+        img: './img/productos/perfumeria/perf10.jpeg'
+    }, 
+
+    {
+        id: 'HT-2210',
+        descripcion: 'PRODUX4',
+        precio: 3513,
+        img: './img/productos/cuidados/cui7.jpeg'
     }
 ]
 

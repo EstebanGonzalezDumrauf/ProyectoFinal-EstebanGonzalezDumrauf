@@ -1,0 +1,39 @@
+@import "variableGlobal";
+@import "generales";
+@import "navbar";
+@import "index";
+@import "promociones";
+@import "contactame";
+@import "quien";
+@import "sorteos";
+
+
+/* Configuracion del color del boton de COMPRAR del card de BS*/
+.btn-primary {
+    background-color: $colorbotonsinselect;
+    border-color: $bordecolorsinselect;
+    color: black;
+    font-weight: bold;
+}
+
+/* Configuracion del color del boton de COMPRAR del card de BS*/
+.btn-primary:hover {
+    background-color: $colorbotonseleccionado;
+    border-color: $bordecolorseleccionado;
+    color: black;
+    font-weight: bold;
+}
+
+/* Configuración del slide de BS */
+.carousel-slide {
+    margin-top: 10px;
+    margin-bottom: 175px;
+}
+
+.row{
+    justify-content: center;
+}
+
+.card{
+    background-color:floralwhite;
+}

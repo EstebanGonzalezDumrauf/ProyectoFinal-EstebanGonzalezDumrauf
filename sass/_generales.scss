@@ -1,0 +1,245 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500&family=Quicksand:wght@300;400&display=swap');
+
+* {
+    /*MODO CELULAR!!!!!!!!!*/
+    /*MODO CELULAR!!!!!!!!!*/
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+p {
+    font-family: Manrope;
+    font-weight: 500;
+    font-size: medium;
+    margin-left: 0px;
+    margin-right: 0px;
+
+    @media (min-width:1024px) {
+        font-family: Manrope;
+        font-weight: 500;
+        font-size: large;
+        margin-left: 0px;
+        margin-right: 0px;
+    }
+}
+
+/*Configuracion de las fotos de productos*/
+.produ {
+    margin: 15px 37px 5px 37px;
+    padding: 0px;
+    border: 2px solid black;
+    border-radius: 3%;
+    box-shadow: 0px 0px 15px 0px grey;
+}
+
+/* Aplico un efecto para que al pasar el cursor sobre la foto esta se agrande un poco */
+.produ:hover {
+    animation-name: produ;
+        -webkit-animation-name: produ;
+        -moz-animation-name: produ;
+    animation-duration: 1s;
+        -webkit-animation-duration: 1s;
+        -moz-animation-duration: 1s;
+    animation-iteration-count: infinite;
+        -webkit-animation-iteration-count: infinite;
+        -moz-animation-iteration-count: infinite;
+}
+
+
+@keyframes produ {
+    0%  {transform: translate(1px, 1px) rotate(0deg);}
+    10% {transform: translate(-1px, -2px) rotate(-1deg);}
+    20% {transform: translate(-3px, 0px) rotate(1deg);}
+    30% {transform: translate(3px, 2px) rotate(0deg);}
+    40% {transform: translate(1px, -1px) rotate(1deg);}
+    50% {transform: translate(-1px, 2px) rotate(-1deg);}
+    60% {transform: translate(-3px, 1px) rotate(0deg);}
+    70% {transform: translate(3px, 1px) rotate(-1deg);}
+    80% {transform: translate(-1px, -1px) rotate(1deg);}
+    90% {transform: translate(1px, 2px) rotate(0deg);}
+    100% {transform: translate(1px, -2px) rotate(-1deg);}
+}
+
+.boxdescprodu {
+    width: 5px;
+}
+
+/* Verificar y comparar con titles*/
+.tipos {
+    letter-spacing: 0.5cm;
+    text-align: center;
+    background-color: $colortitulosection;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+/* Tipo de letra de los encabezados/títulos */
+.titles {
+    letter-spacing: 0.2cm;
+    text-align: center;
+    background-color: $colortitulosection;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    font-size: larger;
+    margin-left: 0px;
+    margin-right: 0px;
+
+    @media (min-width: 501px) {
+        letter-spacing: 0.5cm;
+    }
+
+    @media (min-width:1024px) { 
+        letter-spacing: 0.5cm;
+    }
+}
+
+/* Linea de comentarios debajo del banner con info adicional como cuotas, medios de pago, etc*/
+.lineaonline {
+    text-align: center;
+    align-content: center;
+    background: linear-gradient(to left, $colorgrad1, $colorgrad2);
+    margin-bottom: 15px;
+    font-size: small;
+    margin-left: 0px;
+    margin-right: 0px;
+    padding-top: 10px;
+}
+
+/* Letra del texto que describe a cada producto */
+.textprodu {
+    font-size: medium;
+}
+
+/*Animación del hover sobre las caracteristicas de los productos*/
+#pie {
+    transition: .5s, color .10s;
+        -webkit-transition: .5s, color .10s;
+        -moz-transition: .5s, color .10s;
+}
+
+#pie:hover{
+    transform: scale(2, 0.5);
+        -webkit-transform: scale(1.2, 0.5);
+        -moz-transform: scale(1.2, 0.5);
+}
+
+/*Tamaño de la imagen con las caracteristicas de los productos*/
+#pie {
+    width: 95%;
+    height: 95%;
+
+    @media (min-width:1024px) {
+        width: 75%;
+        height: 75%;
+    }
+}
+
+/* FLEX del body */
+body {
+    text-align: center;
+    font-family: Quicksand;
+    font-weight: bolder;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    min-height: 100vh;
+    max-width: 400px;
+    margin: 0 auto;
+
+    @media (min-width: 501px) {
+        text-align: center;
+        font-family: Quicksand;
+        font-weight: bolder;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+        max-width: 1023px;
+        margin: 0 auto;
+    }
+
+    @media (min-width:1024px) {
+        background-color: white;
+        max-width: 1920px;
+        margin: 0 auto;
+    }
+}
+
+/* FLEX del header */
+.flex__header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+
+    @media (min-width:1024px) {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+}
+
+/* FLEX de los iconos de las redes sociales en el footer*/
+.flex__redes {
+    display: flex;
+    margin: 50px 0px 50px 0px;
+    align-content: center;
+    justify-content: center;
+}
+
+/* FLEX de las caracteristicas de los productos de natura */
+.flex__caracte {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    margin-bottom: 50px;
+    margin-top: 50px;
+
+    @media (min-width:1024px) {
+        display: flex;
+        align-content: center;
+        justify-content: center;
+        margin-bottom: 50px;
+        margin-top: 50px;
+    }
+}
+
+/* FLEX del sector de la Descripcion de las publicaciones */
+.descpubli {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    margin-left: -2;
+    margin-right: -2;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+/* FLEX de los pie de fotos, es la descripcion que va debajo de cada foto de producto*/
+.piefoto {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+/* FLEX de los pie de fotos, es la descripcion que va debajo de cada foto de producto*/
+/*CREO QUE NO FUNCIONA*/
+.fotopubli {
+    display: flex;
+    flex-direction: row-reverse;
+    text-align: center;
+    align-content: center;
+    align-items: center;
+    margin-left: 15px;
+
+    @media (min-width: 501px) {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+    }
+}

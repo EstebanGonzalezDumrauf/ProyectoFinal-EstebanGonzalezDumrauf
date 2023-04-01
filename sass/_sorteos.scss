@@ -1,0 +1,98 @@
+.fotopremio {
+    padding: 0px;
+    border: 2px solid black;
+    border-radius: 3%;
+    width: 40%;
+    height: 40%;
+}
+
+.ganadores {
+    font-size: medium;
+    color: black;
+    
+    @media (min-width: 501px) {
+        font-size: x-large;
+        color: black;
+    }
+}
+
+/* Area y letra correspondiente a los sorteos */
+.sorteos {
+    font-style: italic;
+    margin-left: 100px;
+    margin-bottom: 15px;
+}
+
+/* Flex correspondiente al sector de las fechas de sorteo */
+.flex__fechasorteo {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    border: 2px solid orangered;
+    text-align: center;
+    margin-bottom: 50px;
+    padding-right: 50px;
+    padding-left: 50px;
+    padding-top: 20px;
+    background-color: blanchedalmond;
+
+    @media (min-width: 501px) {
+        // display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap
+        // justify-content: center;
+        // align-content: center;
+        // align-items: center;
+        // border: 2px solid orangered;
+        // text-align: center;
+        // margin-bottom: 50px;
+        // padding-right: 50px;
+        // padding-left: 50px;
+        // background-color: blanchedalmond;
+    }
+
+    @media (min-width:1024px) {
+        flex-direction: column;
+        flex-wrap: nowrap
+    }
+}
+
+/* tamaño de la letra del titulo de premio*/
+.titupremio {
+    font-size: larger;
+}
+
+/* Config de los objetos ofrecidos como premios*/
+.objetos {
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+/*Grilla de primer y segundo premio*/
+.grid__pripre {
+    display: grid;
+    grid-template-columns: 400px;
+    grid-template-rows: 15px;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    border: 2px solid orangered;
+    text-align: center;
+    background-color: blanchedalmond;
+    margin-bottom: 50px;
+
+    @media (min-width:1024px) {
+        display: grid;
+        grid-template-columns: 5px 2fr 2fr 2fr 4fr 5px;
+        grid-template-rows: 350px;
+        justify-content: center;
+        align-content: center;
+        align-items: center;
+        border: 2px solid orangered;
+        text-align: center;
+        background-color: blanchedalmond;
+        margin-bottom: 50px;
+    }
+}

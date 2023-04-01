@@ -1,0 +1,928 @@
+@charset "UTF-8";
+/*PALETA DE COLORES DE SITE*/
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500&family=Quicksand:wght@300;400&display=swap");
+* {
+  /*MODO CELULAR!!!!!!!!!*/
+  /*MODO CELULAR!!!!!!!!!*/
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+p {
+  font-family: Manrope;
+  font-weight: 500;
+  font-size: medium;
+  margin-left: 0px;
+  margin-right: 0px;
+}
+@media (min-width: 1024px) {
+  p {
+    font-family: Manrope;
+    font-weight: 500;
+    font-size: large;
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+}
+
+/*Configuracion de las fotos de productos*/
+.produ {
+  margin: 15px 37px 5px 37px;
+  padding: 0px;
+  border: 2px solid black;
+  border-radius: 3%;
+  box-shadow: 0px 0px 15px 0px grey;
+}
+
+/* Aplico un efecto para que al pasar el cursor sobre la foto esta se agrande un poco */
+.produ:hover {
+  animation-name: produ;
+  -webkit-animation-name: produ;
+  -moz-animation-name: produ;
+  animation-duration: 1s;
+  -webkit-animation-duration: 1s;
+  -moz-animation-duration: 1s;
+  animation-iteration-count: infinite;
+  -webkit-animation-iteration-count: infinite;
+  -moz-animation-iteration-count: infinite;
+}
+
+@-webkit-keyframes produ {
+  0% {
+    transform: translate(1px, 1px) rotate(0deg);
+  }
+  10% {
+    transform: translate(-1px, -2px) rotate(-1deg);
+  }
+  20% {
+    transform: translate(-3px, 0px) rotate(1deg);
+  }
+  30% {
+    transform: translate(3px, 2px) rotate(0deg);
+  }
+  40% {
+    transform: translate(1px, -1px) rotate(1deg);
+  }
+  50% {
+    transform: translate(-1px, 2px) rotate(-1deg);
+  }
+  60% {
+    transform: translate(-3px, 1px) rotate(0deg);
+  }
+  70% {
+    transform: translate(3px, 1px) rotate(-1deg);
+  }
+  80% {
+    transform: translate(-1px, -1px) rotate(1deg);
+  }
+  90% {
+    transform: translate(1px, 2px) rotate(0deg);
+  }
+  100% {
+    transform: translate(1px, -2px) rotate(-1deg);
+  }
+}
+
+@keyframes produ {
+  0% {
+    transform: translate(1px, 1px) rotate(0deg);
+  }
+  10% {
+    transform: translate(-1px, -2px) rotate(-1deg);
+  }
+  20% {
+    transform: translate(-3px, 0px) rotate(1deg);
+  }
+  30% {
+    transform: translate(3px, 2px) rotate(0deg);
+  }
+  40% {
+    transform: translate(1px, -1px) rotate(1deg);
+  }
+  50% {
+    transform: translate(-1px, 2px) rotate(-1deg);
+  }
+  60% {
+    transform: translate(-3px, 1px) rotate(0deg);
+  }
+  70% {
+    transform: translate(3px, 1px) rotate(-1deg);
+  }
+  80% {
+    transform: translate(-1px, -1px) rotate(1deg);
+  }
+  90% {
+    transform: translate(1px, 2px) rotate(0deg);
+  }
+  100% {
+    transform: translate(1px, -2px) rotate(-1deg);
+  }
+}
+.boxdescprodu {
+  width: 5px;
+}
+
+/* Verificar y comparar con titles*/
+.tipos {
+  letter-spacing: 0.5cm;
+  text-align: center;
+  background-color: rgb(236, 185, 136);
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+/* Tipo de letra de los encabezados/títulos */
+.titles {
+  letter-spacing: 0.2cm;
+  text-align: center;
+  background-color: rgb(236, 185, 136);
+  margin-top: 15px;
+  margin-bottom: 15px;
+  font-size: larger;
+  margin-left: 0px;
+  margin-right: 0px;
+}
+@media (min-width: 501px) {
+  .titles {
+    letter-spacing: 0.5cm;
+  }
+}
+@media (min-width: 1024px) {
+  .titles {
+    letter-spacing: 0.5cm;
+  }
+}
+
+/* Linea de comentarios debajo del banner con info adicional como cuotas, medios de pago, etc*/
+.lineaonline {
+  text-align: center;
+  align-content: center;
+  background: linear-gradient(to left, orangered, pink);
+  margin-bottom: 15px;
+  font-size: small;
+  margin-left: 0px;
+  margin-right: 0px;
+  padding-top: 10px;
+}
+
+/* Letra del texto que describe a cada producto */
+.textprodu {
+  font-size: medium;
+}
+
+/*Animación del hover sobre las caracteristicas de los productos*/
+#pie {
+  transition: 0.5s, color 0.1s;
+  -webkit-transition: 0.5s, color 0.1s;
+  -moz-transition: 0.5s, color 0.1s;
+}
+
+#pie:hover {
+  transform: scale(2, 0.5);
+  -webkit-transform: scale(1.2, 0.5);
+  -moz-transform: scale(1.2, 0.5);
+}
+
+/*Tamaño de la imagen con las caracteristicas de los productos*/
+#pie {
+  width: 95%;
+  height: 95%;
+}
+@media (min-width: 1024px) {
+  #pie {
+    width: 75%;
+    height: 75%;
+  }
+}
+
+/* FLEX del body */
+body {
+  text-align: center;
+  font-family: Quicksand;
+  font-weight: bolder;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  min-height: 100vh;
+  max-width: 400px;
+  margin: 0 auto;
+}
+@media (min-width: 501px) {
+  body {
+    text-align: center;
+    font-family: Quicksand;
+    font-weight: bolder;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    max-width: 1023px;
+    margin: 0 auto;
+  }
+}
+@media (min-width: 1024px) {
+  body {
+    background-color: white;
+    max-width: 1920px;
+    margin: 0 auto;
+  }
+}
+
+/* FLEX del header */
+.flex__header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: wrap;
+}
+@media (min-width: 1024px) {
+  .flex__header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+}
+
+/* FLEX de los iconos de las redes sociales en el footer*/
+.flex__redes {
+  display: flex;
+  margin: 50px 0px 50px 0px;
+  align-content: center;
+  justify-content: center;
+}
+
+/* FLEX de las caracteristicas de los productos de natura */
+.flex__caracte {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  margin-bottom: 50px;
+  margin-top: 50px;
+}
+@media (min-width: 1024px) {
+  .flex__caracte {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    margin-bottom: 50px;
+    margin-top: 50px;
+  }
+}
+
+/* FLEX del sector de la Descripcion de las publicaciones */
+.descpubli {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  margin-left: -2;
+  margin-right: -2;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+/* FLEX de los pie de fotos, es la descripcion que va debajo de cada foto de producto*/
+.piefoto {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+/* FLEX de los pie de fotos, es la descripcion que va debajo de cada foto de producto*/
+/*CREO QUE NO FUNCIONA*/
+.fotopubli {
+  display: flex;
+  flex-direction: row-reverse;
+  text-align: center;
+  align-content: center;
+  align-items: center;
+  margin-left: 15px;
+}
+@media (min-width: 501px) {
+  .fotopubli {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+header {
+  background: rgb(255, 255, 255);
+  width: 100%;
+  position: fixed;
+  z-index: 100;
+}
+
+nav {
+  float: none;
+}
+@media (min-width: 1024px) {
+  nav {
+    float: left;
+  }
+}
+nav ul {
+  list-style: none;
+  overflow: hidden;
+  align-items: center;
+}
+@media (min-width: 501px) {
+  nav ul {
+    list-style: none;
+    overflow: hidden;
+    align-items: center;
+  }
+}
+nav ul li {
+  float: left;
+  font-family: Quicksand;
+  font-size: 15px;
+  font-weight: 600;
+}
+@media (min-width: 501px) {
+  nav ul li {
+    float: left;
+    font-family: Quicksand;
+    font-size: 25px;
+    font-weight: 600;
+  }
+}
+@media (min-width: 1024px) {
+  nav ul li {
+    float: left;
+    font-family: Quicksand;
+    font-size: 20px;
+    font-weight: 600;
+  }
+}
+nav ul li a {
+  display: block;
+  padding: 10px;
+  color: black;
+  text-decoration: none;
+}
+@media (min-width: 1024px) {
+  nav ul li a {
+    display: block;
+    padding: 15px;
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+  }
+}
+nav ul li:hover {
+  background: orange;
+}
+
+ul li {
+  list-style-type: none;
+}
+ul li p {
+  font-family: Manrope;
+  font-weight: 500;
+  font-size: large;
+  font-style: italic;
+  list-style-type: none;
+  text-align: left;
+}
+ul li p a {
+  font-size: larger;
+}
+
+/*Dimensiones del logo de la navbar*/
+.logotipo {
+  width: 260px;
+  height: 70px;
+}
+@media (min-width: 400px) {
+  .logotipo {
+    width: 284px;
+    height: 78px;
+  }
+}
+@media (min-width: 501px) {
+  .logotipo {
+    width: 712px;
+    height: 194px;
+  }
+}
+@media (min-width: 1024px) {
+  .logotipo {
+    width: 475px;
+    height: 129px;
+  }
+}
+
+/* Ajusto el tamaño del video de Youtube al dispositivo */
+.videoyoutube {
+  width: 340px;
+  /*475px;*/
+  height: 200px;
+  /*280px;*/
+}
+@media (min-width: 501px) {
+  .videoyoutube {
+    width: 695px;
+    height: 350px;
+  }
+}
+@media (min-width: 1024px) {
+  .videoyoutube {
+    width: 560px;
+    height: 315px;
+  }
+}
+
+/*Foto de proximo ciclo*/
+.fotolanzamiento {
+  padding: 0px;
+  border: 5px ridge coral;
+  border-radius: 50%;
+  box-shadow: 0px 0px 50px 0px rgba(0, 0, 0, 0.8);
+  width: 75%;
+  height: 75%;
+}
+@media (min-width: 501px) {
+  .fotolanzamiento {
+    padding: 0px;
+    border: 5px ridge coral;
+    box-shadow: 0px 0px 50px 0px rgba(0, 0, 0, 0.8);
+    width: 60%;
+    height: 60%;
+  }
+}
+@media (min-width: 1024px) {
+  .fotolanzamiento {
+    padding: 0px;
+    border: 5px ridge orangered;
+    box-shadow: 0px 0px 50px 0px rgba(0, 0, 0, 0.8);
+    width: auto;
+    height: auto;
+  }
+}
+
+/*Fotos secundarias de proximo ciclo*/
+.fotolanzasecun {
+  padding: 0px;
+  border: 5px ridge coral;
+  border-radius: 10%;
+  box-shadow: 0px 0px 50px 0px rgba(0, 0, 0, 0.8);
+  width: 75%;
+  height: 75%;
+}
+@media (min-width: 501px) {
+  .fotolanzasecun {
+    padding: 0px;
+    border: 5px ridge coral;
+    box-shadow: 0px 0px 50px 0px rgba(0, 0, 0, 0.8);
+    width: 60%;
+    height: 60%;
+  }
+}
+@media (min-width: 1024px) {
+  .fotolanzasecun {
+    padding: 0px;
+    border: 5px ridge orangered;
+    box-shadow: 0px 0px 50px 0px rgba(0, 0, 0, 0.8);
+    width: auto;
+    height: auto;
+  }
+}
+
+/* Cuadrado donde va la descripcion de los videos en la pagina index.thml */
+.descripcionvideo {
+  background-color: white;
+  text-align: center;
+  padding: 15px 0px 15px 0px;
+  margin: 0px 0px 0px 0px;
+  border: 0px none black;
+}
+@media (min-width: 501px) {
+  .descripcionvideo {
+    background-color: coral;
+    text-align: center;
+    padding: 15px 0px 15px 0px;
+    margin: 15px 0px 0px 0px;
+    border: 0px none black;
+  }
+}
+@media (min-width: 1024px) {
+  .descripcionvideo {
+    background-color: coral;
+    text-align: center;
+    padding-top: 144px;
+    padding-bottom: 144px;
+    padding-left: 0px;
+    padding-right: 0px;
+    margin: 0px 0px 0px 0px;
+    border: 0px none black;
+    align-items: flex-end;
+    align-content: flex-end;
+    justify-content: left;
+  }
+}
+
+/* FLEX del texto debajo de las fotos de los mas vendidos */
+.ranking {
+  display: flex;
+  align-content: flex-start;
+  align-items: flex-start;
+  justify-content: flex-end;
+  margin: 0;
+  padding: 0;
+}
+
+/*Grilla de los adelantos de proximo ciclo*/
+.ppal {
+  grid-area: ppal;
+  width: 100%;
+  margin: 25px 0px 25px;
+  text-align: center;
+}
+@media (min-width: 1024px) {
+  .ppal {
+    grid-area: ppal;
+    width: 100px;
+    justify-content: stretch;
+    align-content: center;
+    align-items: center;
+    margin-left: 75px;
+    margin-top: 50px;
+  }
+}
+
+/*Grilla de los adelantos de proximo ciclo lateral superior*/
+.superior {
+  grid-area: superior;
+  width: 100%;
+  height: 2fr;
+  margin: 25px 0px 25px;
+  text-align: center;
+}
+@media (min-width: 1024px) {
+  .superior {
+    grid-area: superior;
+    width: 100%;
+    height: 2fr;
+    margin: 25px 0px 25px;
+  }
+}
+
+/*Grilla de los adelantos de proximo ciclo lateral inferior*/
+.inferior {
+  grid-area: inferior;
+  width: 100%;
+  margin: 25px 0px 25px;
+  text-align: center;
+}
+@media (min-width: 1024px) {
+  .inferior {
+    grid-area: inferior;
+    width: 100%;
+    margin: 15px 0px 25px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .proxciclo {
+    display: grid;
+    width: 100%;
+    grid-template-columns: 50% 50%;
+    grid-template-areas: "ppal   superior" "ppal   inferior";
+    justify-content: space-around;
+  }
+}
+
+/* Tachado de la letra del precio anterior de las promociones y descuentos*/
+.tachado {
+  text-decoration: line-through;
+  color: dimgray;
+}
+
+/*Config de la letra de los tipos de elnaces para contactarme*/
+.direconta {
+  font-size: large;
+  color: rgb(0, 0, 0);
+  margin-left: 5px;
+}
+@media (min-width: 501px) {
+  .direconta {
+    font-size: large;
+    color: rgb(0, 0, 0);
+    margin-left: 10px;
+  }
+}
+
+/* Configuro el tamaño de letra del enlace a la pagina de natura para que entre en el ancho de pantalla*/
+.linknatura {
+  font-size: 2%;
+}
+@media (min-width: 501px) {
+  .linknatura {
+    font-size: large;
+  }
+}
+@media (min-width: 1024px) {
+  .linknatura {
+    font-size: large;
+  }
+}
+
+/* Flex correspondiente a los medios de contacto */
+.flex__enlace {
+  display: flex;
+  justify-content: flex-start;
+  align-content: center;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 10px;
+  padding-right: 0px;
+  padding-left: 0px;
+  margin-top: 10px;
+}
+
+/* Controlar que lo use al grid */ /*probar BORRARRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR*/
+.grid__contactame {
+  display: grid;
+  grid-template-columns: 2fr;
+  grid-template-rows: 5px;
+  background: linear-gradient(to left, orange, white);
+  justify-content: space-around;
+  align-content: center;
+  align-items: center;
+  border: 2px solid orangered;
+  text-align: center;
+  background-color: white;
+  flex-wrap: wrap;
+  padding-left: 5px;
+}
+@media (min-width: 501px) {
+  .grid__contactame {
+    display: grid;
+    grid-template-columns: 10fr;
+    grid-template-rows: 5px;
+    background: linear-gradient(to left, orange, white);
+    justify-content: space-around;
+    align-content: center;
+    align-items: center;
+    border: 2px solid orangered;
+    text-align: center;
+    background-color: white;
+    flex-wrap: wrap;
+    padding-left: 20px;
+  }
+}
+@media (min-width: 1024px) {
+  .grid__contactame {
+    display: grid;
+    grid-template-columns: 15px 3fr 1fr 3fr 1fr;
+    grid-template-rows: 350px;
+    background: linear-gradient(to left, orange, white);
+    justify-content: space-around;
+    align-content: center;
+    align-items: center;
+    border: 2px solid orangered;
+    text-align: center;
+    background-color: white;
+    flex-wrap: wrap;
+  }
+}
+
+/* Aumento el tamaño de la fuente de los enlaces de contacto*/
+@media (min-width: 501px) {
+  .enlacesgrandes {
+    font-size: x-large;
+  }
+}
+
+.quien {
+  margin: 10px 37px 5px 37px;
+  padding: 0px;
+  border: 2px solid grey;
+  border-radius: 3%;
+}
+
+/* Flex correspondiente a los sectores de las descripciones de quien.html */
+.flex__soyyo {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: stretch;
+  align-items: center;
+  border: 2px solid orangered;
+  text-align: center;
+  padding-top: 15px;
+  padding-bottom: 5px;
+  margin-bottom: 50px;
+  padding-right: 50px;
+  padding-left: 50px;
+  background-color: blanchedalmond;
+}
+@media (min-width: 1024px) {
+  .flex__soyyo {
+    display: flex;
+    justify-content: center;
+    align-content: stretch;
+    align-items: center;
+    border: 2px solid orangered;
+    text-align: center;
+    padding-top: 0px;
+    margin-bottom: 50px;
+    padding-right: 50px;
+    padding-left: 50px;
+    background-color: blanchedalmond;
+    flex-wrap: nowrap;
+  }
+}
+
+/* Flex correspondiente al sector de presentacion de prodcutos de las descripciones de quien.html */
+.flex__presenta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: stretch;
+  align-items: center;
+  border: 2px solid orangered;
+  text-align: center;
+  margin-bottom: 50px;
+  padding-top: 15px;
+  padding-bottom: 5px;
+  padding-right: 10px;
+  padding-left: 10px;
+  background-color: blanchedalmond;
+}
+@media (min-width: 1024px) {
+  .flex__presenta {
+    display: flex;
+    justify-content: center;
+    align-content: stretch;
+    align-items: center;
+    border: 2px solid orangered;
+    text-align: center;
+    margin-bottom: 50px;
+    padding-top: 0px;
+    padding-right: 10px;
+    padding-left: 10px;
+    background-color: blanchedalmond;
+    flex-wrap: nowrap;
+  }
+}
+
+/* Flex correspondiente al sector capacitacion de las descripciones de quien.html */
+.flex__capa {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: stretch;
+  align-items: center;
+  border: 2px solid orangered;
+  text-align: center;
+  margin-bottom: 50px;
+  padding-top: 15px;
+  padding-bottom: 5px;
+  padding-right: 10px;
+  padding-left: 10px;
+  background-color: blanchedalmond;
+}
+@media (min-width: 1024px) {
+  .flex__capa {
+    display: flex;
+    justify-content: center;
+    align-content: stretch;
+    align-items: center;
+    border: 2px solid orangered;
+    text-align: center;
+    margin-bottom: 50px;
+    padding-top: 0px;
+    padding-right: 10px;
+    padding-left: 10px;
+    background-color: blanchedalmond;
+    flex-wrap: nowrap;
+  }
+}
+
+.fotopremio {
+  padding: 0px;
+  border: 2px solid black;
+  border-radius: 3%;
+  width: 40%;
+  height: 40%;
+}
+
+.ganadores {
+  font-size: medium;
+  color: black;
+}
+@media (min-width: 501px) {
+  .ganadores {
+    font-size: x-large;
+    color: black;
+  }
+}
+
+/* Area y letra correspondiente a los sorteos */
+.sorteos {
+  font-style: italic;
+  margin-left: 100px;
+  margin-bottom: 15px;
+}
+
+/* Flex correspondiente al sector de las fechas de sorteo */
+.flex__fechasorteo {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  border: 2px solid orangered;
+  text-align: center;
+  margin-bottom: 50px;
+  padding-right: 50px;
+  padding-left: 50px;
+  padding-top: 20px;
+  background-color: blanchedalmond;
+}
+@media (min-width: 501px) {
+  .flex__fechasorteo {
+    flex-direction: column;
+    flex-wrap: nowrap;
+  }
+}
+@media (min-width: 1024px) {
+  .flex__fechasorteo {
+    flex-direction: column;
+    flex-wrap: nowrap;
+  }
+}
+
+/* tamaño de la letra del titulo de premio*/
+.titupremio {
+  font-size: larger;
+}
+
+/* Config de los objetos ofrecidos como premios*/
+.objetos {
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+/*Grilla de primer y segundo premio*/
+.grid__pripre {
+  display: grid;
+  grid-template-columns: 400px;
+  grid-template-rows: 15px;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  border: 2px solid orangered;
+  text-align: center;
+  background-color: blanchedalmond;
+  margin-bottom: 50px;
+}
+@media (min-width: 1024px) {
+  .grid__pripre {
+    display: grid;
+    grid-template-columns: 5px 2fr 2fr 2fr 4fr 5px;
+    grid-template-rows: 350px;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    border: 2px solid orangered;
+    text-align: center;
+    background-color: blanchedalmond;
+    margin-bottom: 50px;
+  }
+}
+
+/* Configuracion del color del boton de COMPRAR del card de BS*/
+.btn-primary {
+  background-color: coral;
+  border-color: brown;
+  color: black;
+  font-weight: bold;
+}
+
+/* Configuracion del color del boton de COMPRAR del card de BS*/
+.btn-primary:hover {
+  background-color: palegreen;
+  border-color: crimson;
+  color: black;
+  font-weight: bold;
+}
+
+/* Configuración del slide de BS */
+.carousel-slide {
+  margin-top: 10px;
+  margin-bottom: 175px;
+}
+
+.row {
+  justify-content: center;
+}
+
+.card {
+  background-color: floralwhite;
+}/*# sourceMappingURL=estilos.css.map */
