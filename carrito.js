@@ -28,38 +28,8 @@ class Renglon {
     }
 }
 
-let main = document.getElementById("bolsaProductos");
-
-function crearCards (){
-    let productos = cargarProductosLS();
-
-    productos.forEach(prod=>{
-        main.innerHTML += ` <div class="col-lg-3 col-md-6 col-sm-12">
-                <div class="card justify-content-center align-items-center" style="width: 18rem; margin: auto auto; align-items: center; margin-bottom: 15px; " >
-                    <div>
-                        <img class= "produ" src="${prod.img}" alt="Producto mas vendido" width="250" height="250"/>
-                    </div>
-                    <div class="card-body text-center">
-                        <h5 class="card-title">${prod.descripcion}</h5>
-                        <h2 class="card-text">$ ${prod.precio}</h2>
-                        <div>
-                            <label for="">Cantidad:</label>
-                            <input type="text" value= 1 id="textProd${prod.id}" style="margin-bottom: 15px; width: 50px; ">
-                        </div>
-                        <a id="botonProd${prod.id}" class="btn btn-primary">Agregar (+)</a>
-                    </div>
-                </div>
-            </div> `
-    })
-    darFuncionalidadCarrito ();
-}
-
-function darFuncionalidadCarrito (){
-    productos.forEach((prod)=> {
-        document.getElementById(`botonProd${prod.id}`).addEventListener('click', () =>{
-            agregarAlCarrito(prod);
-        })
-    })
+function vaciarCarrito (){
+    localStorage.removeItem("BD");
 }
 
 function sumarElementoAlCarrito (nroFila){
@@ -114,6 +84,7 @@ function eliminarRenglonCarrito (nroFila){
     montoCarrito = 0;
 
     arrayRenglon.splice(nroFila - 1, 1);
+    //console.log(arrayRenglon);
 
     const cantidadEnCarrito = document.getElementById("cantidadProdu");
 
@@ -135,7 +106,7 @@ function eliminarRenglonCarrito (nroFila){
 
         montoCarrito += element.subtotal;
 
-        mostrarCantiCarrito(element);
+        mostrarRenglonCarrito(element);
     });
 
     final = true;
@@ -168,7 +139,7 @@ function agregarAlCarrito (prod){
     
         arrayRenglon.push (renglonNew);
         localStorage.setItem('BD', JSON.stringify(arrayRenglon))
-        mostrarCantiCarrito(renglonNew);
+        mostrarRenglonCarrito(renglonNew);
     } else {
         let myProdu = arrayRenglon.find((element)=> element.id === prod.id);
 
@@ -190,11 +161,35 @@ function agregarAlCarrito (prod){
 
 }
 
-function mostrarCantiCarrito(renglon) {
+function mostrarRenglonCarrito(renglon) {
     
     const cantidadEnCarrito = document.getElementById("cantidadProdu");
 
-    cantidadEnCarrito.innerHTML = objetosDelCarrito;    
+    cantidadEnCarrito.innerHTML = objetosDelCarrito;
+
+    const cuerpoDelCarrito = document.getElementById("bodyDelCarrito");
+
+    fila++;
+
+    if (final == false) {
+
+        cuerpoDelCarrito.innerHTML = `<tr> <th scope="row" style="width: 20px;">${fila}</th> <td style="width: 100px;">${renglon.id}</td>` +
+        `<td>${renglon.descripcion}</td> <td>$${renglon.precio}</td> <td style="width: 10px;"><input value=${renglon.cantidad} id="cant${fila}" ` + 
+        `disabled style="margin-bottom: 15px; width: 50px;"></input></td> <td id="sub${fila}">$${renglon.subtotal.toFixed(2)}</td> ` +
+        `<td style="width: 50px;"><a id="botonModMas${fila}" class="btn btn-warning" onclick="sumarElementoAlCarrito(${fila});">+</a></td> ` +
+        `<td style="width: 50px;"><a id="botonModMenos${fila}" class="btn btn-warning" onclick="restarElementoAlCarrito(${fila});">-</a></td> ` +
+        `<td style="width: 50px;"> <a id="botonElim${fila}" class="btn btn-danger" onclick="eliminarRenglonCarrito(${fila});">Eliminar</a></td></tr>`;
+        final = true;
+    } else {
+        cuerpoDelCarrito.innerHTML = cuerpoDelCarrito.innerHTML + `<tr> <th scope="row" style="width: 20px;">${fila}</th> <td style="width: 100px;">${renglon.id}</td>` +
+        `<td>${renglon.descripcion}</td> <td>$${renglon.precio}</td> <td style="width: 10px;"><input value=${renglon.cantidad} id="cant${fila}" ` + 
+        `disabled style="margin-bottom: 15px; width: 50px;"></input></td> <td id="sub${fila}">$${renglon.subtotal.toFixed(2)}</td> ` +
+        `<td style="width: 50px;"><a id="botonModMas${fila}" class="btn btn-warning" onclick="sumarElementoAlCarrito(${fila});">+</a></td> ` +
+        `<td style="width: 50px;"><a id="botonModMenos${fila}" class="btn btn-warning" onclick="restarElementoAlCarrito(${fila});">-</a></td> ` +
+        `<td style="width: 50px;"> <a id="botonElim${fila}" class="btn btn-danger" onclick="eliminarRenglonCarrito(${fila});">Eliminar</a></td></tr>`;
+
+    }
+    
 }
 
 function refreshRenglonesCarrito(carrito){
@@ -215,9 +210,11 @@ function refreshRenglonesCarrito(carrito){
     carrito.forEach(element => {
         objetosDelCarrito += element.cantidad;
 
+        //element.calcularRenglon(); //Obtiene el subtotal de la compra aplicando el IVA
+
         montoCarrito += element.subtotal;
 
-        mostrarCantiCarrito(element);
+        mostrarRenglonCarrito(element);
     });
 
     final = true;
@@ -232,7 +229,7 @@ for (let j = 0; j <= arrayRenglon.length - 1; j++) {
 
     montoCarrito = (montoCarrito + arrayRenglon[j].subtotal);
 
-    mostrarCantiCarrito(arrayRenglon[j]);
+    mostrarRenglonCarrito(arrayRenglon[j]);
 
     i++; 
 }
@@ -248,5 +245,3 @@ divContenedorRdoN.innerHTML = divContenedorRdoN.innerHTML + `<br> <h2> TOTAL: $ 
 const divbotonFin = document.getElementById("regionBotonFinalizar");
 divbotonFin.innerHTML = `<p> </p> `
 })
-
-crearCards ();
