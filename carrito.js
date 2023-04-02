@@ -34,6 +34,7 @@ function vaciarCarrito (){
     arrayRenglon = [];
     mostrarCantiCarrito(arrayRenglon);
     refreshRenglonesCarrito(arrayRenglon);
+    mostrarMensajeVacio();
 }
 
 function sumarElementoAlCarrito (nroFila){
@@ -213,12 +214,18 @@ function mostrarMensajeVacio(){
         const mensajeAlerta = document.getElementById("regionMensajeAlerta");
 
         mensajeAlerta.innerHTML = `<div class="alert alert-warning" role="alert">Carrito Vacío. No tiene productos seleccionados.</div>`;
+
+        montoCarrito = 0;
+        const divContenedorRdoN = document.getElementById("divContenedorResultado");
+        divContenedorRdoN.innerHTML = ``;
     }
 }
 
 function mostrarTotalCompra(){
+    if (objetosDelCarrito != 0) {
     const divContenedorRdoN = document.getElementById("divContenedorResultado");
     divContenedorRdoN.innerHTML = divContenedorRdoN.innerHTML + `<br> <h2> TOTAL: $ ${montoCarrito.toFixed(2)} <br><br>`
+    }
 }
 
 function refreshRenglonesCarrito(carrito){
@@ -231,6 +238,8 @@ function refreshRenglonesCarrito(carrito){
         const mensajeAlerta = document.getElementById("regionMensajeAlerta");
 
         mensajeAlerta.innerHTML = `<div class="alert alert-warning" role="alert">Carrito Vacío. No tiene productos seleccionados.</div>`;
+
+        mostrarMensajeVacio();
     } else {
         const cantidadEnCarrito = document.getElementById("cantidadProdu");
 
