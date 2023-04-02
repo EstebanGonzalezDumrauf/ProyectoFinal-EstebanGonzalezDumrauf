@@ -54,6 +54,27 @@ function crearCards (){
     darFuncionalidadCarrito ();
 }
 
+function vaciarCarrito (){    
+    localStorage.removeItem("BD");
+    objetosDelCarrito = 0;
+    arrayRenglon = [];
+    mostrarCantiCarrito(arrayRenglon);
+    refreshRenglonesCarrito(arrayRenglon);
+}
+
+function mostrarMensajeVacio(){
+    console.log(objetosDelCarrito);
+    if (objetosDelCarrito == 0) {
+        const tablaDelCarrito = document.getElementById("tablaCarrito");
+
+        tablaDelCarrito.innerHTML = ``;
+
+        const mensajeAlerta = document.getElementById("regionMensajeAlerta");
+    
+        mensajeAlerta.innerHTML = `<div class="alert alert-warning" role="alert">Carrito Vacío. No tiene productos seleccionados.</div>`;
+    }
+}
+
 function darFuncionalidadCarrito (){
     productos.forEach((prod)=> {
         document.getElementById(`botonProd${prod.id}`).addEventListener('click', () =>{
@@ -152,6 +173,7 @@ function agregarAlCarrito (prod){
     if (existe === false) {
         renglonNew.precio = prod.precio;
         renglonNew.id = prod.id;
+        renglonNew.img = prod.img;
         renglonNew.cantidad = parseInt(document.getElementById("textProd" + prod.id).value);
         renglonNew.descripcion = prod.descripcion;
         renglonNew.calcularRenglon(); //Obtiene el subtotal de la compra aplicando el IVA
@@ -198,29 +220,40 @@ function mostrarCantiCarrito(renglon) {
 }
 
 function refreshRenglonesCarrito(carrito){
-    const cantidadEnCarrito = document.getElementById("cantidadProdu");
+    console.log(objetosDelCarrito);
+    if (objetosDelCarrito == 0) {
+        const tablaDelCarrito = document.getElementById("tablaCarrito");
 
-    cantidadEnCarrito.innerHTML = objetosDelCarrito;
+        tablaDelCarrito.innerHTML = ``;
 
-    objetosDelCarrito = 0;
+        const mensajeAlerta = document.getElementById("regionMensajeAlerta");
+    
+        mensajeAlerta.innerHTML = `<div class="alert alert-warning" role="alert">Carrito Vacío. No tiene productos seleccionados.</div>`;
+    } else {
+        const cantidadEnCarrito = document.getElementById("cantidadProdu");
 
-    const cuerpoDelCarrito = document.getElementById("bodyDelCarrito");
-
-    cuerpoDelCarrito.innerHTML = ``;
-
-    fila = 0;
-
-    final = false;
-
-    carrito.forEach(element => {
-        objetosDelCarrito += element.cantidad;
-
-        montoCarrito += element.subtotal;
-
-        mostrarCantiCarrito(element);
-    });
-
-    final = true;
+        cantidadEnCarrito.innerHTML = objetosDelCarrito;
+    
+        objetosDelCarrito = 0;
+    
+        const cuerpoDelCarrito = document.getElementById("bodyDelCarrito");
+    
+        cuerpoDelCarrito.innerHTML = ``;
+    
+        fila = 0;
+    
+        final = false;
+    
+        carrito.forEach(element => {
+            objetosDelCarrito += element.cantidad;
+    
+            montoCarrito += element.subtotal;
+    
+            mostrarCantiCarrito(element);
+        });
+    
+        final = true;
+    }
 }
 
 

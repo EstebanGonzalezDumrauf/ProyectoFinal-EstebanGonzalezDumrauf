@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="preload" href="css/estilos.css" as="styles">
+    <!-- <link rel="preload" href="css/estilos.css" as="styles"> -->
     <link href="css/estilos.css" rel="stylesheet">
     <title>Comprando Shining Life</title>
 </head>
@@ -40,13 +40,13 @@
             </div>
             <div class="col-md-6 d-flex align-items-center justify-content-end">
                 <a href="carrito.html" class="btn btn-ligth" width="20" height="20">
-                <button type="button" class="btn btn-ligth position-relative" width="20" height="20">
+                <button type="button" class="btn btn-ligth position-relative" onclick="mostrarMensajeVacio();" width="20" height="20">
                     <img src="img/heading/carrito.png" alt="Logo de carrito de compras" width="35" height="35" />
                     <span id="cantidadProdu" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">0</span>
                 </button>
                 </a>
                 <a href="#" class="btn btn-ligth" width="20" height="20">
-                    <button type="button" class="btn btn-ligth position-relative" width="20" height="20">
+                    <button type="button" class="btn btn-ligth position-relative" onclick="vaciarCarrito();" width="20" height="20">
                         <img src="img/heading/residuos.png" alt="Logo de carrito de compras" width="22" height="22" />
                     </button>
                 </a>
