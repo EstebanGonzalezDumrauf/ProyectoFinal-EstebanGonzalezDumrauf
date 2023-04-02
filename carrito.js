@@ -28,7 +28,7 @@ class Renglon {
     }
 }
 
-function vaciarCarrito (){    
+function vaciarCarrito (){
     localStorage.removeItem("BD");
     objetosDelCarrito = 0;
     arrayRenglon = [];
@@ -65,18 +65,18 @@ function restarElementoAlCarrito (nroFila){
         const cantidadEnCarrito = document.getElementById("cantidadProdu");
         objetosDelCarrito--;
         cantidadEnCarrito.innerHTML = objetosDelCarrito;
-    
+
         const cantidadDelRenglon = document.getElementById("cant" + nroFila);
         cantidadDelRenglon.value = arrayRenglon[nroFila - 1].cantidad;
 
         arrayRenglon[nroFila - 1].subtotal = (arrayRenglon[nroFila - 1].precio * arrayRenglon[nroFila - 1].cantidad) *iva;
 
         montoCarrito = (montoCarrito - (arrayRenglon[nroFila - 1].precio * iva));
-    
+
         console.log(arrayRenglon[nroFila - 1].subtotal);
         const textSub = document.getElementById("sub" + nroFila);
         textSub.innerHTML = "$" + arrayRenglon[nroFila - 1].subtotal.toFixed(2);
-    
+
         localStorage.setItem('BD', JSON.stringify(arrayRenglon))
     }
 
@@ -100,6 +100,7 @@ function eliminarRenglonCarrito (nroFila){
     cuerpoDelCarrito.innerHTML = ``;
 
     fila = 0;
+    montoCarrito = 0;
 
     final = false;
 
@@ -130,17 +131,17 @@ function agregarAlCarrito (prod){
         renglonNew.cantidad = parseInt(document.getElementById("textProd" + prod.id).value);
         renglonNew.descripcion = prod.descripcion;
         renglonNew.calcularRenglon(); //Obtiene el subtotal de la compra aplicando el IVA
-    
+
         //calculo el subtotal de la compra y sumo ese subtotal valorizado del carrito
         montoCarrito = (montoCarrito + renglonNew.subtotal);
-    
+
         const textProdu = document.getElementById("textProd" + prod.id);
         textProdu.value = 1;
-    
+
         i++; // i = i + 1;
-    
+
         objetosDelCarrito = objetosDelCarrito + renglonNew.cantidad;
-    
+
         arrayRenglon.push (renglonNew);
         localStorage.setItem('BD', JSON.stringify(arrayRenglon))
         mostrarRenglonCarrito(renglonNew);
@@ -166,7 +167,7 @@ function agregarAlCarrito (prod){
 }
 
 function mostrarRenglonCarrito(renglon) {
-    
+
     const cantidadEnCarrito = document.getElementById("cantidadProdu");
 
     cantidadEnCarrito.innerHTML = objetosDelCarrito;
@@ -178,29 +179,28 @@ function mostrarRenglonCarrito(renglon) {
     if (final == false) { //${fila}
 
         cuerpoDelCarrito.innerHTML = `<tr> <th scope="row" style="width: 20px;"><img src=".${renglon.img}" alt="miniatura" width="42" height="42"/></th> <td style="width: 100px;">${renglon.id}</td>` +
-        `<td>${renglon.descripcion}</td> <td>$${renglon.precio}</td> <td style="width: 10px;"><input value=${renglon.cantidad} id="cant${fila}" ` + 
+        `<td>${renglon.descripcion}</td> <td>$${renglon.precio}</td> <td style="width: 10px;"><input value=${renglon.cantidad} id="cant${fila}" ` +
         `disabled style="margin-bottom: 15px; width: 50px;"></input></td> <td id="sub${fila}">$${renglon.subtotal.toFixed(2)}</td> ` +
         `<td style="width: 50px;"><a id="botonModMas${fila}" class="btn btn-warning" onclick="sumarElementoAlCarrito(${fila});">+</a></td> ` +
         `<td style="width: 50px;"><a id="botonModMenos${fila}" class="btn btn-warning" onclick="restarElementoAlCarrito(${fila});">-</a></td> ` +
         `<td style="width: 50px;"> <a id="botonElim${fila}" class="btn btn-danger" onclick="eliminarRenglonCarrito(${fila});">Eliminar</a></td></tr>`;
         final = true;
     } else {
-        cuerpoDelCarrito.innerHTML = cuerpoDelCarrito.innerHTML + `<tr> <th scope="row" style="width: 20px;"><img src=".${renglon.img}" alt="miniatura" width="42" height="42"/></th> <td style="width: 100px;">${renglon.id}</td>` +
-        `<td>${renglon.descripcion}</td> <td>$${renglon.precio}</td> <td style="width: 10px;"><input value=${renglon.cantidad} id="cant${fila}" ` + 
+        cuerpoDelCarrito.innerHTML = cuerpoDelCarrito.innerHTML + `<tr> <th scope="row" style="width: 20px; d-flex align-items-center justify-content-center"><img src=".${renglon.img}" alt="miniatura" width="42" height="42"/></th> <td style="width: 100px;">${renglon.id}</td>` +
+        `<td>${renglon.descripcion}</td> <td>$${renglon.precio}</td> <td style="width: 10px;"><input value=${renglon.cantidad} id="cant${fila}" ` +
         `disabled style="margin-bottom: 15px; width: 50px;"></input></td> <td id="sub${fila}">$${renglon.subtotal.toFixed(2)}</td> ` +
         `<td style="width: 50px;"><a id="botonModMas${fila}" class="btn btn-warning" onclick="sumarElementoAlCarrito(${fila});">+</a></td> ` +
         `<td style="width: 50px;"><a id="botonModMenos${fila}" class="btn btn-warning" onclick="restarElementoAlCarrito(${fila});">-</a></td> ` +
         `<td style="width: 50px;"> <a id="botonElim${fila}" class="btn btn-danger" onclick="eliminarRenglonCarrito(${fila});">Eliminar</a></td></tr>`;
 
     }
-    
 }
 
 function mostrarCantiCarrito(renglon) {
-    
+
     const cantidadEnCarrito = document.getElementById("cantidadProdu");
 
-    cantidadEnCarrito.innerHTML = objetosDelCarrito;    
+    cantidadEnCarrito.innerHTML = objetosDelCarrito;
 }
 
 function mostrarMensajeVacio(){
@@ -211,44 +211,49 @@ function mostrarMensajeVacio(){
         tablaDelCarrito.innerHTML = ``;
 
         const mensajeAlerta = document.getElementById("regionMensajeAlerta");
-    
+
         mensajeAlerta.innerHTML = `<div class="alert alert-warning" role="alert">Carrito Vacío. No tiene productos seleccionados.</div>`;
     }
 }
 
+function mostrarTotalCompra(){
+    const divContenedorRdoN = document.getElementById("divContenedorResultado");
+    divContenedorRdoN.innerHTML = divContenedorRdoN.innerHTML + `<br> <h2> TOTAL: $ ${montoCarrito.toFixed(2)} <br><br>`
+}
+
 function refreshRenglonesCarrito(carrito){
-    console.log(objetosDelCarrito);
+    // console.log(objetosDelCarrito);
     if (objetosDelCarrito == 0) {
         const tablaDelCarrito = document.getElementById("tablaCarrito");
 
         tablaDelCarrito.innerHTML = ``;
 
         const mensajeAlerta = document.getElementById("regionMensajeAlerta");
-    
+
         mensajeAlerta.innerHTML = `<div class="alert alert-warning" role="alert">Carrito Vacío. No tiene productos seleccionados.</div>`;
     } else {
         const cantidadEnCarrito = document.getElementById("cantidadProdu");
 
         cantidadEnCarrito.innerHTML = objetosDelCarrito;
-    
+
         objetosDelCarrito = 0;
-    
+
         const cuerpoDelCarrito = document.getElementById("bodyDelCarrito");
-    
+
         cuerpoDelCarrito.innerHTML = ``;
-    
+
         fila = 0;
-    
+
         final = false;
-    
+
         carrito.forEach(element => {
             objetosDelCarrito += element.cantidad;
-    
+
             montoCarrito += element.subtotal;
-    
+
             mostrarCantiCarrito(element);
         });
-    
+
         final = true;
     }
 }
@@ -264,10 +269,12 @@ for (let j = 0; j <= arrayRenglon.length - 1; j++) {
 
     mostrarRenglonCarrito(arrayRenglon[j]);
 
-    i++; 
+    i++;
 }
 // console.log(arrayRenglon);
 mostrarMensajeVacio();
+mostrarTotalCompra();
+
 
 botonFinalizar.addEventListener("click", ()=> {
 //Aca utilizo DOM para informar que la compra a finalizado, mostrando un resumen de lo comprado
