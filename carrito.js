@@ -58,6 +58,7 @@ function finalizarCompra (){
     mostrarCantiCarrito(arrayRenglon);
 }
 
+//FUNCION QUE SE LLAMA CON EL BOTON (+) DE LA FILA
 function sumarElementoAlCarrito (nroFila){
     arrayRenglon[nroFila - 1].cantidad++;
 
@@ -81,6 +82,7 @@ function sumarElementoAlCarrito (nroFila){
     localStorage.setItem('BD', JSON.stringify(arrayRenglon))
 }
 
+//FUNCION QUE SE LLAMA CON EL BOTON (-) DE LA FILA
 function restarElementoAlCarrito (nroFila){
 
     if (arrayRenglon[nroFila - 1].cantidad > 1) {
@@ -110,7 +112,7 @@ function restarElementoAlCarrito (nroFila){
 
 function eliminarRenglonCarrito (nroFila){
 
-    montoCarrito = 0;
+    // montoCarrito = 0;
 
     arrayRenglon.splice(nroFila - 1, 1);
 
@@ -137,7 +139,7 @@ function eliminarRenglonCarrito (nroFila){
 
         mostrarRenglonCarrito(element);
     });
-
+    console.log(objetosDelCarrito);
     final = true;
 
     mostrarTotalCompra();
@@ -231,7 +233,6 @@ function mostrarCantiCarrito(renglon) {
 }
 
 function mostrarMensajeVacio(){
-    console.log(objetosDelCarrito);
     if (objetosDelCarrito == 0) {
         const tablaDelCarrito = document.getElementById("tablaCarrito");
 
@@ -245,15 +246,22 @@ function mostrarMensajeVacio(){
         const divContenedorRdoN = document.getElementById("divContenedorResultado");
         divContenedorRdoN.innerHTML = ``;
 
+        const cantidadEnCarrito = document.getElementById("cantidadProdu");
+        cantidadEnCarrito.innerHTML = objetosDelCarrito;
+
         const divbotonFin = document.getElementById("regionBotonFinalizar");
         divbotonFin.innerHTML = `<a href="index.html" id="botonFinalizar" class="btn btn-primary">VOLVER A PRODUCTOS</a>`
     }
 }
 
 function mostrarTotalCompra(){
-    if (objetosDelCarrito != 0) {
     const divContenedorRdoN = document.getElementById("divContenedorResultado");
+    if (objetosDelCarrito != 0) {
     divContenedorRdoN.innerHTML = `<br> <h2> TOTAL: $ ${montoCarrito.toFixed(2)} <br><br>`
+    }
+    else {
+    divContenedorRdoN.innerHTML = `<br><br>`;
+    mostrarMensajeVacio();
     }
 }
 
