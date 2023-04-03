@@ -270,6 +270,24 @@ for (let j = 0; j <= arrayRenglon.length - 1; j++) {
     i++; 
 }
 
+function finalizarCompra (){
+    // const cuerpoDelCarrito = document.getElementById("bodyDelCarrito");
+    // cuerpoDelCarrito.innerHTML= ``;
+
+    // const encabezadoDeTabla = document.getElementById("encabezadoTabla");
+    // encabezadoDeTabla.innerHTML= `<th scope="col">#</th><th scope="col">Codigo</th><th scope="col">Descripción</th><th scope="col">Precio</th><th scope="col">Cantidad</th><th scope="col">Subtotal c/IVA</th>`;
+
+    // arrayRenglon.forEach(element => {
+
+    //     cuerpoDelCarrito.innerHTML = cuerpoDelCarrito.innerHTML + `<tr> <th scope="row" style="width: 20px;"><img src=".${element.img}" alt="miniatura" width="42" height="42"/></th> <td style="width: 100px;">${element.id}</td>` + `<td>${element.descripcion}</td> <td>$${element.precio}</td> <td style="width: 10px;"><input value=${element.cantidad} ` + `disabled style="margin-bottom: 15px; width: 50px;"></input></td> <td>$${element.subtotal.toFixed(2)}</td></th></tr> `;
+
+    // });
+    // localStorage.removeItem("BD");
+    // arrayRenglon = [];
+    // mostrarCantiCarrito(arrayRenglon);
+}
+
+
 botonFinalizar.addEventListener("click", ()=> {
 //Aca utilizo DOM para informar que la compra a finalizado, mostrando un resumen de lo comprado
 const productosHTML = document.getElementById("listadoProdu");

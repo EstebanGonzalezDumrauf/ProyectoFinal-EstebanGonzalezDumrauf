@@ -35,6 +35,27 @@ function vaciarCarrito (){
     mostrarCantiCarrito(arrayRenglon);
     refreshRenglonesCarrito(arrayRenglon);
     mostrarMensajeVacio();
+
+    const divbotonFin = document.getElementById("regionBotonFinalizar");
+    divbotonFin.innerHTML = `<a href="index.html" id="botonFinalizar" class="btn btn-primary">VOLVER A PRODUCTOS</a>`
+    
+}
+
+function finalizarCompra (){
+    const cuerpoDelCarrito = document.getElementById("bodyDelCarrito");
+    cuerpoDelCarrito.innerHTML= ``;
+
+    const encabezadoDeTabla = document.getElementById("encabezadoTabla");
+    encabezadoDeTabla.innerHTML= `<th scope="col">#</th><th scope="col">Codigo</th><th scope="col">Descripción</th><th scope="col">Precio</th><th scope="col">Cantidad</th><th scope="col">Subtotal c/IVA</th>`;
+
+    arrayRenglon.forEach(element => {
+
+        cuerpoDelCarrito.innerHTML = cuerpoDelCarrito.innerHTML + `<tr> <th scope="row" style="width: 20px;"><img src=".${element.img}" alt="miniatura" width="42" height="42"/></th> <td style="width: 100px;">${element.id}</td>` + `<td>${element.descripcion}</td> <td>$${element.precio}</td> <td style="width: 10px;"><input value=${element.cantidad} ` + `disabled style="margin-bottom: 15px; width: 50px;"></input></td> <td>$${element.subtotal.toFixed(2)}</td></th></tr> `;
+
+    });
+    localStorage.removeItem("BD");
+    arrayRenglon = [];
+    mostrarCantiCarrito(arrayRenglon);
 }
 
 function sumarElementoAlCarrito (nroFila){
@@ -54,6 +75,8 @@ function sumarElementoAlCarrito (nroFila){
 
     const textSub = document.getElementById("sub" + nroFila);
     textSub.innerHTML = "$" + arrayRenglon[nroFila - 1].subtotal.toFixed(2);
+
+    mostrarTotalCompra();
 
     localStorage.setItem('BD', JSON.stringify(arrayRenglon))
 }
@@ -78,6 +101,8 @@ function restarElementoAlCarrito (nroFila){
         const textSub = document.getElementById("sub" + nroFila);
         textSub.innerHTML = "$" + arrayRenglon[nroFila - 1].subtotal.toFixed(2);
 
+        mostrarTotalCompra();
+
         localStorage.setItem('BD', JSON.stringify(arrayRenglon))
     }
 
@@ -88,7 +113,6 @@ function eliminarRenglonCarrito (nroFila){
     montoCarrito = 0;
 
     arrayRenglon.splice(nroFila - 1, 1);
-    //console.log(arrayRenglon);
 
     const cantidadEnCarrito = document.getElementById("cantidadProdu");
 
@@ -115,6 +139,8 @@ function eliminarRenglonCarrito (nroFila){
     });
 
     final = true;
+
+    mostrarTotalCompra();
     localStorage.setItem('BD', JSON.stringify(arrayRenglon))
 }
 
@@ -218,13 +244,16 @@ function mostrarMensajeVacio(){
         montoCarrito = 0;
         const divContenedorRdoN = document.getElementById("divContenedorResultado");
         divContenedorRdoN.innerHTML = ``;
+
+        const divbotonFin = document.getElementById("regionBotonFinalizar");
+        divbotonFin.innerHTML = `<a href="index.html" id="botonFinalizar" class="btn btn-primary">VOLVER A PRODUCTOS</a>`
     }
 }
 
 function mostrarTotalCompra(){
     if (objetosDelCarrito != 0) {
     const divContenedorRdoN = document.getElementById("divContenedorResultado");
-    divContenedorRdoN.innerHTML = divContenedorRdoN.innerHTML + `<br> <h2> TOTAL: $ ${montoCarrito.toFixed(2)} <br><br>`
+    divContenedorRdoN.innerHTML = `<br> <h2> TOTAL: $ ${montoCarrito.toFixed(2)} <br><br>`
     }
 }
 
@@ -280,7 +309,6 @@ for (let j = 0; j <= arrayRenglon.length - 1; j++) {
 
     i++;
 }
-// console.log(arrayRenglon);
 mostrarMensajeVacio();
 mostrarTotalCompra();
 
@@ -288,11 +316,21 @@ mostrarTotalCompra();
 botonFinalizar.addEventListener("click", ()=> {
 //Aca utilizo DOM para informar que la compra a finalizado, mostrando un resumen de lo comprado
 const productosHTML = document.getElementById("listadoProdu");
-productosHTML.innerHTML = `<h2> Ud. ha comprado los siguientes productos </h2>`;
+productosHTML.innerHTML = `<h2> Ud. ha comprado los siguientes productos </h2> <br>`;
 
-const divContenedorRdoN = document.getElementById("divContenedorResultado");
-divContenedorRdoN.innerHTML = divContenedorRdoN.innerHTML + `<br> <h2> TOTAL: $ ${montoCarrito.toFixed(2)} `
+// const divContenedorRdoN = document.getElementById("divContenedorResultado");
+// divContenedorRdoN.innerHTML = divContenedorRdoN.innerHTML + `<br> <h2> TOTAL: $ ${montoCarrito.toFixed(2)} `
 
 const divbotonFin = document.getElementById("regionBotonFinalizar");
 divbotonFin.innerHTML = `<p> </p> `
+
+finalizarCompra();
+
+Swal.fire({
+    position: 'center',
+    icon: 'success',
+    title: 'Pedido Realizado. <br>Muchas gracias!!',
+    showConfirmButton: false,
+    timer: 3500
+})
 })
