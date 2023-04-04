@@ -11,6 +11,7 @@ let fila = 0;
 let final = true;
 let objetosDelCarrito = 0;
 let arrayRenglon = [];
+let arrayUsuarios = [];
 const iva = 1.21; /*defino al IVA como constante */
 
 class Renglon {
@@ -40,6 +41,59 @@ function vaciarCarrito (){
     divbotonFin.innerHTML = `<a href="index.html" id="botonFinalizar" class="btn btn-primary">VOLVER A PRODUCTOS</a>`
     
 }
+
+async function login() {
+    let usuario;
+    const {
+        value: formValues
+    } = await Swal.fire({
+        title: 'Ingrese su DNI',
+        html: '<input id="swal-input1" class="swal2-input">',
+        focusConfirm: false,
+        showCancelButton: true,
+        preConfirm: () => {
+            return [
+                usuario = document.getElementById('swal-input1').value,
+            ]
+        }
+    })
+    console.log(usuario);
+
+    const {
+        value: password
+    } = await Swal.fire({
+        title: 'Ingresa tu password',
+        input: 'password',
+        inputLabel: 'Password',
+        inputPlaceholder: 'Enter your password',
+        inputAttributes: {
+            maxlength: 10,
+            autocapitalize: 'off',
+            autocorrect: 'off'
+        }
+    })
+    console.log(password);
+
+    let exist = arrayUsuarios.find((element) => element.dni == usuario & element.pass == password);
+    let indiceExist = arrayUsuarios.indexOf(exist);
+
+    console.log(exist);
+
+    if (indiceExist != -1) {
+        // const textoLogin = document.getElementById("login");
+        // textoLogin.innerHTML = arrayUsuarios[indiceExist].apeYnom;
+        localStorage.setItem('USER', JSON.stringify(arrayUsuarios[indiceExist]));
+        mostrarUsuarioLogueado();
+    } else { //no existe usuario o contraseña erronea
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'El usuario no existe o la contraseña es incorrecta!',
+            //footer: '<a href="">Why do I have this issue?</a>'
+        })
+    }
+}
+
 
 function finalizarCompra (){
     const cuerpoDelCarrito = document.getElementById("bodyDelCarrito");
@@ -265,6 +319,20 @@ function mostrarTotalCompra(){
     }
 }
 
+function mostrarUsuarioLogueado(){
+    let userLog = JSON.parse(localStorage.getItem("USER")) || [];
+    if (userLog.length != 0) {
+        const textoUser = document.getElementById("user");
+        textoUser.innerHTML = userLog.apeYnom;
+        const textoLogin = document.getElementById("login");
+        textoLogin.innerHTML = 'Logout';
+    } else {
+        const textoLogin = document.getElementById("login");
+        textoLogin.innerHTML = 'Login';
+    }
+}
+
+
 function refreshRenglonesCarrito(carrito){
     // console.log(objetosDelCarrito);
     if (objetosDelCarrito == 0) {
@@ -319,26 +387,28 @@ for (let j = 0; j <= arrayRenglon.length - 1; j++) {
 }
 mostrarMensajeVacio();
 mostrarTotalCompra();
+arrayUsuarios = cargarUsuariosLS();
+mostrarUsuarioLogueado();
 
 
 botonFinalizar.addEventListener("click", ()=> {
-//Aca utilizo DOM para informar que la compra a finalizado, mostrando un resumen de lo comprado
-const productosHTML = document.getElementById("listadoProdu");
-productosHTML.innerHTML = `<h2> Ud. ha comprado los siguientes productos </h2> <br>`;
+    //Aca utilizo DOM para informar que la compra a finalizado, mostrando un resumen de lo comprado
+    const productosHTML = document.getElementById("listadoProdu");
+    productosHTML.innerHTML = `<h2> Ud. ha comprado los siguientes productos </h2> <br>`;
 
-// const divContenedorRdoN = document.getElementById("divContenedorResultado");
-// divContenedorRdoN.innerHTML = divContenedorRdoN.innerHTML + `<br> <h2> TOTAL: $ ${montoCarrito.toFixed(2)} `
+    // const divContenedorRdoN = document.getElementById("divContenedorResultado");
+    // divContenedorRdoN.innerHTML = divContenedorRdoN.innerHTML + `<br> <h2> TOTAL: $ ${montoCarrito.toFixed(2)} `
 
-const divbotonFin = document.getElementById("regionBotonFinalizar");
-divbotonFin.innerHTML = `<p> </p> `
+    const divbotonFin = document.getElementById("regionBotonFinalizar");
+    divbotonFin.innerHTML = `<p> </p> `
 
-finalizarCompra();
+    finalizarCompra();
 
-Swal.fire({
-    position: 'center',
-    icon: 'success',
-    title: 'Pedido Realizado. <br>Muchas gracias!!',
-    showConfirmButton: false,
-    timer: 3500
-})
+    Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: 'Pedido Realizado. <br>Muchas gracias!!',
+        showConfirmButton: false,
+        timer: 3500
+    })
 })
