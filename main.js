@@ -55,6 +55,15 @@ function crearCards() {
     darFuncionalidadCarrito();
 }
 
+function logout(){
+    const textoLogin = document.getElementById("divLogin");
+    textoLogin.innerHTML = `<a href="#" id="login" class="btn btn-ligth" width="20" height="20" onclick="login();">Login</a>`;
+
+    localStorage.removeItem("USER");
+    mostrarUsuarioLogueado();
+}
+
+
 async function login() {
     let usuario;
     const {
@@ -90,8 +99,8 @@ async function login() {
     let indiceExist = arrayUsuarios.indexOf(exist);
 
     if (indiceExist != -1) {
-        // const textoLogin = document.getElementById("login");
-        // textoLogin.innerHTML = arrayUsuarios[indiceExist].apeYnom;
+        const textoLogin = document.getElementById("divLogin");
+        textoLogin.innerHTML = `<a href="#" id="login" class="btn btn-ligth" width="20" height="20" onclick="logout();">Logout</a>`;
         localStorage.setItem('USER', JSON.stringify(arrayUsuarios[indiceExist]));
         mostrarUsuarioLogueado();
     } else { //no existe usuario o contraseña erronea
@@ -130,14 +139,19 @@ function mostrarMensajeVacio() {
 function mostrarUsuarioLogueado(){
     let userLog = JSON.parse(localStorage.getItem("USER")) || [];
     console.log(userLog.length);
-    if (userLog.length != 0) {
+    if (userLog.length != 0) { //hay usuario logueado
         const textoUser = document.getElementById("user");
         textoUser.innerHTML = userLog.apeYnom;
-        const textoLogin = document.getElementById("login");
-        textoLogin.innerHTML = 'Logout';
+        // const textoLogin = document.getElementById("login");
+        // textoLogin.innerHTML = 'Logout';
+        const textoLogin = document.getElementById("divLogin");
+        textoLogin.innerHTML = `<a href="#" id="login" class="btn btn-ligth" width="20" height="20" onclick="logout();">Logout</a>`;
     } else {
-        const textoLogin = document.getElementById("login");
-        textoLogin.innerHTML = 'Login';
+        const textoUser = document.getElementById("user");
+        textoUser.innerHTML = ``;
+        const textoLogin = document.getElementById("divLogin");
+        textoLogin.innerHTML = `<a href="#" id="login" class="btn btn-ligth" width="20" height="20" onclick="login();">Login</a>`;
+        
     }
 }
 
@@ -302,9 +316,9 @@ function refreshRenglonesCarrito(carrito) {
 
         objetosDelCarrito = 0;
 
-        const cuerpoDelCarrito = document.getElementById("bodyDelCarrito");
+        // const cuerpoDelCarrito = document.getElementById("bodyDelCarrito");
 
-        cuerpoDelCarrito.innerHTML = ``;
+        // cuerpoDelCarrito.innerHTML = ``;
 
         fila = 0;
 

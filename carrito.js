@@ -42,6 +42,15 @@ function vaciarCarrito (){
     
 }
 
+function logout(){
+    const textoLogin = document.getElementById("divLogin");
+    textoLogin.innerHTML = `<a href="#" id="login" class="btn btn-ligth" width="20" height="20" onclick="login();">Login</a>`;
+
+    localStorage.removeItem("USER");
+    mostrarUsuarioLogueado();
+}
+
+
 async function login() {
     let usuario;
     const {
@@ -57,7 +66,7 @@ async function login() {
             ]
         }
     })
-    console.log(usuario);
+    // console.log(usuario);
 
     const {
         value: password
@@ -72,16 +81,13 @@ async function login() {
             autocorrect: 'off'
         }
     })
-    console.log(password);
 
     let exist = arrayUsuarios.find((element) => element.dni == usuario & element.pass == password);
     let indiceExist = arrayUsuarios.indexOf(exist);
 
-    console.log(exist);
-
     if (indiceExist != -1) {
-        // const textoLogin = document.getElementById("login");
-        // textoLogin.innerHTML = arrayUsuarios[indiceExist].apeYnom;
+        const textoLogin = document.getElementById("divLogin");
+        textoLogin.innerHTML = `<a href="#" id="login" class="btn btn-ligth" width="20" height="20" onclick="logout();">Logout</a>`;
         localStorage.setItem('USER', JSON.stringify(arrayUsuarios[indiceExist]));
         mostrarUsuarioLogueado();
     } else { //no existe usuario o contraseña erronea
@@ -321,14 +327,20 @@ function mostrarTotalCompra(){
 
 function mostrarUsuarioLogueado(){
     let userLog = JSON.parse(localStorage.getItem("USER")) || [];
-    if (userLog.length != 0) {
+    console.log(userLog.length);
+    if (userLog.length != 0) { //hay usuario logueado
         const textoUser = document.getElementById("user");
         textoUser.innerHTML = userLog.apeYnom;
-        const textoLogin = document.getElementById("login");
-        textoLogin.innerHTML = 'Logout';
+        // const textoLogin = document.getElementById("login");
+        // textoLogin.innerHTML = 'Logout';
+        const textoLogin = document.getElementById("divLogin");
+        textoLogin.innerHTML = `<a href="#" id="login" class="btn btn-ligth" width="20" height="20" onclick="logout();">Logout</a>`;
     } else {
-        const textoLogin = document.getElementById("login");
-        textoLogin.innerHTML = 'Login';
+        const textoUser = document.getElementById("user");
+        textoUser.innerHTML = ``;
+        const textoLogin = document.getElementById("divLogin");
+        textoLogin.innerHTML = `<a href="#" id="login" class="btn btn-ligth" width="20" height="20" onclick="login();">Login</a>`;
+        
     }
 }
 
