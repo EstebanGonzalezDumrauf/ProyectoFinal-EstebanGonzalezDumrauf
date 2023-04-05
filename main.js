@@ -79,39 +79,40 @@ async function login() {
             ]
         }
     })
-    // console.log(usuario);
+    console.log(usuario);
 
-    const {
-        value: password
-    } = await Swal.fire({
-        title: 'Ingresa tu password',
-        input: 'password',
-        inputLabel: 'Password',
-        inputPlaceholder: 'Enter your password',
-        inputAttributes: {
-            maxlength: 10,
-            autocapitalize: 'off',
-            autocorrect: 'off'
-        }
-    })
-
-    let exist = arrayUsuarios.find((element) => element.dni == usuario & element.pass == password);
-    let indiceExist = arrayUsuarios.indexOf(exist);
-
-    if (indiceExist != -1) {
-        const textoLogin = document.getElementById("divLogin");
-        textoLogin.innerHTML = `<a href="#" id="login" class="btn btn-ligth" width="20" height="20" onclick="logout();">Logout</a>`;
-        localStorage.setItem('USER', JSON.stringify(arrayUsuarios[indiceExist]));
-        mostrarUsuarioLogueado();
-    } else { //no existe usuario o contraseña erronea
-        Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: 'El usuario no existe o la contraseña es incorrecta!',
-            //footer: '<a href="">Why do I have this issue?</a>'
+    if (usuario != undefined) {
+        const {
+            value: password
+        } = await Swal.fire({
+            title: 'Ingresa tu password',
+            input: 'password',
+            inputLabel: 'Password',
+            inputPlaceholder: 'Enter your password',
+            inputAttributes: {
+                maxlength: 10,
+                autocapitalize: 'off',
+                autocorrect: 'off'
+            }
         })
-    }
 
+        let exist = arrayUsuarios.find((element) => element.dni == usuario & element.pass == password);
+        let indiceExist = arrayUsuarios.indexOf(exist);
+    
+        if (indiceExist != -1) {
+            const textoLogin = document.getElementById("divLogin");
+            textoLogin.innerHTML = `<a href="#" id="login" class="btn btn-ligth" width="20" height="20" onclick="logout();">Logout</a>`;
+            localStorage.setItem('USER', JSON.stringify(arrayUsuarios[indiceExist]));
+            mostrarUsuarioLogueado();
+        } else { //no existe usuario o contraseña erronea
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'El usuario no existe o la contraseña es incorrecta!',
+                //footer: '<a href="">Why do I have this issue?</a>'
+            })
+        }
+    }
 }
 
 function vaciarCarrito() {
