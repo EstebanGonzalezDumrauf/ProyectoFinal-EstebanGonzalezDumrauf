@@ -416,7 +416,7 @@ for (let j = 0; j <= arrayRenglon.length - 1; j++) {
 }
 mostrarMensajeVacio();
 mostrarTotalCompra();
-arrayUsuarios = cargarUsuariosLS();
+arrayUsuarios = recolectarUsuariosLS(); //cargarUsuariosLS();
 mostrarUsuarioLogueado();
 
 

@@ -383,4 +383,5 @@ botonFinalizar.addEventListener("click", () => {
 })
 
 crearCards();
-arrayUsuarios = cargarUsuariosLS();
+arrayUsuarios = recolectarUsuariosLS(); //cargarUsuariosLS();
+//console.log(arrayUsuarios);

@@ -58,21 +58,7 @@ const productos = [
 ]
 
 // -------------------------------- LISTADO DE USUARIOS -----------------------------------------------------------
-const usuarios = [
-    {
-        id: 1,
-        apeYnom: 'Esteban GONZALEZ DUMRAUF',
-        dni: 25904652,
-        pass: '1234'
-    },
-
-    {
-        id: 2,
-        apeYnom: 'Liliana MIKULA',
-        dni: 33228601,
-        pass: '1234'
-    }
-]
+const usuarios = []
 
 function guardarProductosLS(productos){
     localStorage.setItem ("productos", JSON.stringify(productos));
@@ -92,5 +78,19 @@ function cargarUsuariosLS(usuarios){
     return JSON.parse(localStorage.getItem("usuarios")) || [];
 }
 
-guardarProductosLS(productos);
+function recolectarUsuariosLS(){
+    fetch("usuarios.json") //"https://randomuser.me/api/?results=50"
+    .then((respuesta) => respuesta.json())
+    .then((datos) => {
+        datos.forEach (x => {
+            usuarios.push (x);     
+        })
+    })
+    console.log(usuarios);
+    return usuarios;
+};
+
+//guardarProductosLS(productos);
 guardarUsuariosLS(usuarios);
+recolectarUsuariosLS();
+

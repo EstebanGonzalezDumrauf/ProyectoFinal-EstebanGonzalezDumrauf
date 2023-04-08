@@ -1,0 +1,14 @@
+[
+    {
+        "id":1,
+        "apeYnom":"Esteban GONZALEZ DUMRAUF",
+        "dni":25904652,
+        "pass":"1234"
+    },
+    {
+        "id":2,
+        "apeYnom":"Liliana MIKULA",
+        "dni":33228601,
+        "pass":"1234"
+    }
+]
