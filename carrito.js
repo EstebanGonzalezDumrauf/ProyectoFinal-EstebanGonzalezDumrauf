@@ -284,7 +284,7 @@ function mostrarRenglonCarrito(renglon) {
 
     if (final == false) { //${fila}
 
-        cuerpoDelCarrito.innerHTML = `<tr> <th scope="row" style="width: 20px;"><img src=".${renglon.img}" alt="miniatura" width="42" height="42"/></th> <td style="width: 100px;">${renglon.id}</td>` +
+        cuerpoDelCarrito.innerHTML = `<tr> <th scope="row" style="width: 20px;"><img src="${renglon.img}" alt="miniatura" width="42" height="42"/></th> <td style="width: 100px;">${renglon.id}</td>` +
         `<td>${renglon.descripcion}</td> <td>$${renglon.precio}</td> <td style="width: 10px;"><input value=${renglon.cantidad} id="cant${fila}" ` +
         `disabled style="margin-bottom: 15px; width: 50px;"></input></td> <td id="sub${fila}">$${renglon.subtotal.toFixed(2)}</td> ` +
         `<td style="width: 50px;"><a id="botonModMas${fila}" class="btn btn-warning" onclick="sumarElementoAlCarrito(${fila});">+</a></td> ` +
@@ -292,7 +292,7 @@ function mostrarRenglonCarrito(renglon) {
         `<td style="width: 50px;"> <a id="botonElim${fila}" class="btn btn-danger" onclick="eliminarRenglonCarrito(${fila});">Eliminar</a></td></tr>`;
         final = true;
     } else {
-        cuerpoDelCarrito.innerHTML = cuerpoDelCarrito.innerHTML + `<tr> <th scope="row" style="width: 20px; d-flex align-items-center justify-content-center"><img src=".${renglon.img}" alt="miniatura" width="42" height="42"/></th> <td style="width: 100px;">${renglon.id}</td>` +
+        cuerpoDelCarrito.innerHTML = cuerpoDelCarrito.innerHTML + `<tr> <th scope="row" style="width: 20px; d-flex align-items-center justify-content-center"><img src="${renglon.img}" alt="miniatura" width="42" height="42"/></th> <td style="width: 100px;">${renglon.id}</td>` +
         `<td>${renglon.descripcion}</td> <td>$${renglon.precio}</td> <td style="width: 10px;"><input value=${renglon.cantidad} id="cant${fila}" ` +
         `disabled style="margin-bottom: 15px; width: 50px;"></input></td> <td id="sub${fila}">$${renglon.subtotal.toFixed(2)}</td> ` +
         `<td style="width: 50px;"><a id="botonModMas${fila}" class="btn btn-warning" onclick="sumarElementoAlCarrito(${fila});">+</a></td> ` +

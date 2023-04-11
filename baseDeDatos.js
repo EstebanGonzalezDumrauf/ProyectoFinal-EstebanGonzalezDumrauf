@@ -79,7 +79,7 @@ function cargarUsuariosLS(usuarios){
 }
 
 function recolectarUsuariosLS(){
-    fetch("usuarios.json") //"https://randomuser.me/api/?results=50"
+    fetch("./usuarios.json") //"https://randomuser.me/api/?results=50"
     .then((respuesta) => respuesta.json())
     .then((datos) => {
         datos.forEach (x => {
