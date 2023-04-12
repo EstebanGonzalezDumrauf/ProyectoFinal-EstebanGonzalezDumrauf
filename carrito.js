@@ -64,6 +64,7 @@ function usuarioLogueado(){
 
 
 async function login() {
+    arrayUsuarios = cargarUsuariosLS();
     let usuario;
     const {
         value: formValues

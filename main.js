@@ -65,6 +65,7 @@ function logout(){
 
 
 async function login() {
+    arrayUsuarios = cargarUsuariosLS();
     let usuario;
     const {
         value: formValues
@@ -385,4 +386,4 @@ botonFinalizar.addEventListener("click", () => {
 
 crearCards();
 arrayUsuarios = cargarUsuariosLS(); //cargarUsuariosLS();
-console.log(arrayUsuarios);
+//console.log(arrayUsuarios);
