@@ -78,19 +78,51 @@ function cargarUsuariosLS(usuarios){
     return JSON.parse(localStorage.getItem("usuarios")) || [];
 }
 
-function recolectarUsuariosLS(){
-    fetch("./usuarios.json") //"https://randomuser.me/api/?results=50"
-    .then((respuesta) => respuesta.json())
-    .then((datos) => {
-        datos.forEach (x => {
-            usuarios.push (x);     
-        })
-    })
-    console.log(usuarios);
+async function recolectarUsuariosLS(){
+    const respuesta = await fetch("https://randomuser.me/api/?results=50");
+    const data = await respuesta.json();   
+
+    let miUsuario = {
+        "user": "bati",
+        "nomYape": "Esteban Gonzalez",
+        "password": "1234"
+    }
+    usuarios.push (miUsuario);   
+    data.results.forEach(item => {
+        //console.log(item.login.username);
+
+        miUsuario = {
+            "user": item.login.username,
+            "nomYape": item.name.first + " " + item.name.last,
+            "password": item.login.password
+        }
+        usuarios.push (miUsuario);   
+    });
+
+    miUsuario = {
+        "user": "colo",
+        "nomYape": "Liliana Mikula",
+        "password": "1234"
+    }
+    usuarios.push (miUsuario);  
+    //console.log(usuarios);
+    //return usuarios; 
+    guardarUsuariosLS(usuarios);
+    //console.log(usuarios);
+
+    // fetch("./usuarios.json") //"https://randomuser.me/api/?results=50" ./usuarios.json
+    // .then((respuesta) => respuesta.json())
+    // .then((datos) => {
+    //     datos.forEach (x => {
+    //         usuarios.push (x);     
+    //     })
+    // })
+    // console.log(usuarios);
     return usuarios;
 };
 
 //guardarProductosLS(productos);
-guardarUsuariosLS(usuarios);
 recolectarUsuariosLS();
+// guardarUsuariosLS(usuarios);
+
 

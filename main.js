@@ -69,7 +69,7 @@ async function login() {
     const {
         value: formValues
     } = await Swal.fire({
-        title: 'Ingrese su DNI',
+        title: 'Ingrese su usuario',
         html: '<input id="swal-input1" class="swal2-input">',
         focusConfirm: false,
         showCancelButton: true,
@@ -96,7 +96,8 @@ async function login() {
             }
         })
 
-        let exist = arrayUsuarios.find((element) => element.dni == usuario & element.pass == password);
+        console.log(arrayUsuarios);
+        let exist = arrayUsuarios.find((element) => element.user == usuario & element.password == password);
         let indiceExist = arrayUsuarios.indexOf(exist);
     
         if (indiceExist != -1) {
@@ -142,7 +143,7 @@ function mostrarUsuarioLogueado(){
     console.log(userLog.length);
     if (userLog.length != 0) { //hay usuario logueado
         const textoUser = document.getElementById("user");
-        textoUser.innerHTML = userLog.apeYnom;
+        textoUser.innerHTML = userLog.nomYape;
         // const textoLogin = document.getElementById("login");
         // textoLogin.innerHTML = 'Logout';
         const textoLogin = document.getElementById("divLogin");
@@ -383,5 +384,5 @@ botonFinalizar.addEventListener("click", () => {
 })
 
 crearCards();
-arrayUsuarios = recolectarUsuariosLS(); //cargarUsuariosLS();
-//console.log(arrayUsuarios);
+arrayUsuarios = cargarUsuariosLS(); //cargarUsuariosLS();
+console.log(arrayUsuarios);
