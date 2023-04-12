@@ -55,7 +55,7 @@ function usuarioLogueado(){
 
     if (userLog.length != 0) { //hay usuario logueado
         const textoUser = document.getElementById("user");
-        return ", " + userLog.apeYnom;
+        return ", " + userLog.nomYape;
     } else {
         return "";
     }
