@@ -344,13 +344,16 @@ function refreshRenglonesCarrito(carrito) {
 arrayRenglon = JSON.parse(localStorage.getItem('BD')) || [];
 for (let j = 0; j <= arrayRenglon.length - 1; j++) {
 
-    objetosDelCarrito = objetosDelCarrito + arrayRenglon[j].cantidad;
+    if (arrayRenglon.length != 0) {
+        objetosDelCarrito = objetosDelCarrito + arrayRenglon[j].cantidad;
 
-    montoCarrito = (montoCarrito + arrayRenglon[j].subtotal);
+        montoCarrito = (montoCarrito + arrayRenglon[j].subtotal);
+    
+        mostrarCantiCarrito(arrayRenglon[j]);
+    
+        i++;
+    }
 
-    mostrarCantiCarrito(arrayRenglon[j]);
-
-    i++;
 }
 mostrarUsuarioLogueado();
 
