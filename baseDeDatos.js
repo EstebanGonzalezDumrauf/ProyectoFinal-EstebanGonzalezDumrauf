@@ -57,9 +57,6 @@ const productos = [
     }
 ]
 
-// -------------------------------- LISTADO DE USUARIOS -----------------------------------------------------------
-const usuarios = []
-
 function guardarProductosLS(productos){
     localStorage.setItem ("productos", JSON.stringify(productos));
 }
@@ -69,6 +66,9 @@ function cargarProductosLS(productos){
 }
 
 guardarProductosLS(productos);
+
+// -------------------------------- LISTADO DE USUARIOS -----------------------------------------------------------
+const usuarios = []
 
 function guardarUsuariosLS(usuarios){
     localStorage.setItem ("usuarios", JSON.stringify(usuarios));
@@ -89,8 +89,6 @@ async function recolectarUsuariosLS(){
     }
     usuarios.push (miUsuario);   
     data.results.forEach(item => {
-        //console.log(item.login.username);
-
         miUsuario = {
             "user": item.login.username,
             "nomYape": item.name.first + " " + item.name.last,
@@ -105,24 +103,9 @@ async function recolectarUsuariosLS(){
         "password": "1234"
     }
     usuarios.push (miUsuario);  
-    //console.log(usuarios);
-    //return usuarios; 
     guardarUsuariosLS(usuarios);
-    //console.log(usuarios);
-
-    // fetch("./usuarios.json") //"https://randomuser.me/api/?results=50" ./usuarios.json
-    // .then((respuesta) => respuesta.json())
-    // .then((datos) => {
-    //     datos.forEach (x => {
-    //         usuarios.push (x);     
-    //     })
-    // })
-    // console.log(usuarios);
-    return usuarios;
 };
 
-//guardarProductosLS(productos);
 recolectarUsuariosLS();
-// guardarUsuariosLS(usuarios);
 
 

@@ -115,10 +115,6 @@ async function login() {
     }
 }
 
-
-
-
-
 function finalizarCompra (){
     const cuerpoDelCarrito = document.getElementById("bodyDelCarrito");
     cuerpoDelCarrito.innerHTML= ``;
@@ -189,8 +185,6 @@ function restarElementoAlCarrito (nroFila){
 }
 
 function eliminarRenglonCarrito (nroFila){
-
-    // montoCarrito = 0;
 
     arrayRenglon.splice(nroFila - 1, 1);
 
@@ -349,8 +343,6 @@ function mostrarUsuarioLogueado(){
     if (userLog.length != 0) { //hay usuario logueado
         const textoUser = document.getElementById("user");
         textoUser.innerHTML = userLog.nomYape;
-        // const textoLogin = document.getElementById("login");
-        // textoLogin.innerHTML = 'Logout';
         const textoLogin = document.getElementById("divLogin");
         textoLogin.innerHTML = `<a href="#" id="login" class="btn btn-ligth" width="20" height="20" onclick="logout();">Logout</a>`;
     } else {
@@ -364,7 +356,6 @@ function mostrarUsuarioLogueado(){
 
 
 function refreshRenglonesCarrito(carrito){
-    // console.log(objetosDelCarrito);
     if (objetosDelCarrito == 0) {
         const tablaDelCarrito = document.getElementById("tablaCarrito");
 
@@ -403,7 +394,6 @@ function refreshRenglonesCarrito(carrito){
 }
 
 
-
 arrayRenglon = JSON.parse(localStorage.getItem('BD')) || [];
 for (let j = 0; j <= arrayRenglon.length - 1; j++) {
 
@@ -426,14 +416,10 @@ botonFinalizar.addEventListener("click", ()=> {
     const productosHTML = document.getElementById("listadoProdu");
     productosHTML.innerHTML = `<h2> Ud. ha comprado los siguientes productos </h2> <br>`;
 
-    // const divContenedorRdoN = document.getElementById("divContenedorResultado");
-    // divContenedorRdoN.innerHTML = divContenedorRdoN.innerHTML + `<br> <h2> TOTAL: $ ${montoCarrito.toFixed(2)} `
-
     const divbotonFin = document.getElementById("regionBotonFinalizar");
     divbotonFin.innerHTML = `<p> </p> `
 
     finalizarCompra();
-
 
     Swal.fire({
         position: 'center',

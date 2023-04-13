@@ -111,7 +111,6 @@ async function login() {
                 icon: 'error',
                 title: 'Oops...',
                 text: 'El usuario no existe o la contraseña es incorrecta!',
-                //footer: '<a href="">Why do I have this issue?</a>'
             })
         }
     }
@@ -145,8 +144,6 @@ function mostrarUsuarioLogueado(){
     if (userLog.length != 0) { //hay usuario logueado
         const textoUser = document.getElementById("user");
         textoUser.innerHTML = userLog.nomYape;
-        // const textoLogin = document.getElementById("login");
-        // textoLogin.innerHTML = 'Logout';
         const textoLogin = document.getElementById("divLogin");
         textoLogin.innerHTML = `<a href="#" id="login" class="btn btn-ligth" width="20" height="20" onclick="logout();">Logout</a>`;
     } else {
@@ -319,10 +316,6 @@ function refreshRenglonesCarrito(carrito) {
 
         objetosDelCarrito = 0;
 
-        // const cuerpoDelCarrito = document.getElementById("bodyDelCarrito");
-
-        // cuerpoDelCarrito.innerHTML = ``;
-
         fila = 0;
 
         final = false;
@@ -357,23 +350,6 @@ for (let j = 0; j <= arrayRenglon.length - 1; j++) {
 }
 mostrarUsuarioLogueado();
 
-// function finalizarCompra() {
-//     const cuerpoDelCarrito = document.getElementById("bodyDelCarrito");
-//     cuerpoDelCarrito.innerHTML= ``;
-
-//     const encabezadoDeTabla = document.getElementById("encabezadoTabla");
-//     encabezadoDeTabla.innerHTML= `<th scope="col">#</th><th scope="col">Codigo</th><th scope="col">Descripción</th><th scope="col">Precio</th><th scope="col">Cantidad</th><th scope="col">Subtotal c/IVA</th>`;
-
-//     arrayRenglon.forEach(element => {
-
-//         cuerpoDelCarrito.innerHTML = cuerpoDelCarrito.innerHTML + `<tr> <th scope="row" style="width: 20px;"><img src=".${element.img}" alt="miniatura" width="42" height="42"/></th> <td style="width: 100px;">${element.id}</td>` + `<td>${element.descripcion}</td> <td>$${element.precio}</td> <td style="width: 10px;"><input value=${element.cantidad} ` + `disabled style="margin-bottom: 15px; width: 50px;"></input></td> <td>$${element.subtotal.toFixed(2)}</td></th></tr> `;
-
-//     });
-//     localStorage.removeItem("BD");
-//     arrayRenglon = [];
-//     mostrarCantiCarrito(arrayRenglon);
-// }
-
 
 botonFinalizar.addEventListener("click", () => {
     //Aca utilizo DOM para informar que la compra a finalizado, mostrando un resumen de lo comprado
@@ -388,5 +364,4 @@ botonFinalizar.addEventListener("click", () => {
 })
 
 crearCards();
-arrayUsuarios = cargarUsuariosLS(); //cargarUsuariosLS();
-//console.log(arrayUsuarios);
+arrayUsuarios = cargarUsuariosLS();
